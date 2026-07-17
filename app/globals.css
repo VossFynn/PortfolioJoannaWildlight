@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design-Tokens — einzige Quelle für Farben/Maße (README Handoff)
+   Komponenten referenzieren ausschließlich diese Tokens
+   (via Tailwind-Klassen oder var(--jw-*)).
+   ============================================================ */
+:root {
+  /* Farben */
+  --jw-ivory: #f7f4ee; /* Seitengrund */
+  --jw-card: #fdfbf6; /* Karten, Polaroid, Inputs, FAQ */
+  --jw-greige: #e4e1d8; /* alternierende Sektionen */
+  --jw-line: #ebe7dc; /* Header-Border */
+  --jw-border-input: #d5d0c3;
+  --jw-ink: #3b372f; /* Headlines, Primärtext, dunkle Buttons */
+  --jw-text-secondary: #5a5449;
+  --jw-text-tertiary: #6e675e;
+  --jw-text-muted: #9a937f; /* Labels, Logo */
+  --jw-gold-dark: #8a6d3f; /* Akzentwörter, Links, Hover */
+  --jw-gold: #b08a52; /* Trennstriche, Sterne, Dots aktiv */
+  --jw-gold-light: #c9a26a; /* Punkte, CTA-Border, Glow */
+  --jw-gold-pale: #edd9b8; /* Akzente/CTA-Text auf dunklem Grund */
+  --jw-dark: #332f28; /* CTA-Band, Sticker */
+  --jw-footer: #2b2822;
+  --jw-cta-text: #cfc9bb; /* Fließtext auf CTA-Band */
+  --jw-quote-dark: #b0a890; /* Zitate auf dunklem Grund */
+
+  /* Radien */
+  --jw-radius-pill: 999px;
+  --jw-radius-card: 4px;
+  --jw-radius-arch: 230px; /* Bogen-Bilder Desktop-Portrait */
+  --jw-radius-arch-md: 160px;
+  --jw-radius-arch-card: 150px; /* Karten-Bilder Desktop */
+  --jw-radius-arch-sm: 130px; /* Karten/Mobile */
+
+  /* Schatten */
+  --jw-shadow-frame: 0 12px 48px rgba(59, 55, 47, 0.14);
+  --jw-shadow-card: 0 6px 20px rgba(59, 55, 47, 0.1);
+  --jw-shadow-sticker: 0 8px 24px rgba(59, 55, 47, 0.22);
+  --jw-shadow-tilt: 0 10px 30px rgba(59, 55, 47, 0.15);
+
+  /* Buttons (README: Höhe 52–56px, Padding 0 32–44px, ls .08em, 15px) */
+  --jw-button-height: 54px;
+  --jw-button-padding-x: 38px;
+
+  /* Hero-Overlay */
+  --jw-hero-overlay-from: rgba(46, 42, 35, 0.62);
+  --jw-hero-overlay-to: rgba(46, 42, 35, 0.08);
+
+  /* Sonnenkreis-Glow */
+  --jw-sun-glow: rgba(201, 162, 106, 0.45);
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-ivory: var(--jw-ivory);
+  --color-card: var(--jw-card);
+  --color-greige: var(--jw-greige);
+  --color-line: var(--jw-line);
+  --color-border-input: var(--jw-border-input);
+  --color-ink: var(--jw-ink);
+  --color-text-secondary: var(--jw-text-secondary);
+  --color-text-tertiary: var(--jw-text-tertiary);
+  --color-text-muted: var(--jw-text-muted);
+  --color-gold-dark: var(--jw-gold-dark);
+  --color-gold: var(--jw-gold);
+  --color-gold-light: var(--jw-gold-light);
+  --color-gold-pale: var(--jw-gold-pale);
+  --color-dark: var(--jw-dark);
+  --color-footer: var(--jw-footer);
+  --color-cta-text: var(--jw-cta-text);
+  --color-quote-dark: var(--jw-quote-dark);
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+
+  --font-display: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-body: var(--font-mulish), "Mulish", sans-serif;
+
+  --radius-pill: var(--jw-radius-pill);
+  --radius-card: var(--jw-radius-card);
+
+  --shadow-frame: var(--jw-shadow-frame);
+  --shadow-card: var(--jw-shadow-card);
+  --shadow-sticker: var(--jw-shadow-sticker);
+  --shadow-tilt: var(--jw-shadow-tilt);
+}
+
+/* Typo-Skalen (README):
+   Desktop: H1 50–52px w500 · H2 38–44px w500 · Body 17–18px lh1.8 · Nav 15px ls .04em
+   Mobile:  H1 32–40px · H2 27–32px · Body 16px lh1.75 */
+
+/* Sichtbare Focus-States (a11y) */
+:focus-visible {
+  outline: 2px solid var(--jw-gold);
+  outline-offset: 2px;
+}

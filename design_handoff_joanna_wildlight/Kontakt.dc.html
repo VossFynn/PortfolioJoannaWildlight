@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Mulish:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#DDD9CF; }
+a { color:inherit; text-decoration:none; } a:hover { color:#8A6D3F; }
+input:focus, textarea:focus { outline:2px solid #B08A52; outline-offset:2px; }
+</style>
+</helmet>
+<section style="padding:48px; display:flex; gap:72px; align-items:flex-start; font-family:'Mulish',sans-serif; color:#3B372F;">
+
+<!-- ================= DESKTOP ================= -->
+<div style="display:flex; flex-direction:column; gap:12px;">
+<div style="font-family:monospace; font-size:12px; color:#6E675E;">Kontakt · Desktop 1440</div>
+<div style="width:1440px; background:#F7F4EE; box-shadow:0 12px 48px rgba(59,55,47,0.14);">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 64px; height:88px; border-bottom:1px solid #EBE7DC;">
+    <a href="Startseite.dc.html" style="text-align:center;">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:26px; letter-spacing:0.28em;">JOANNA</div>
+      <div style="font-size:9px; letter-spacing:0.5em; color:#9A937F; margin-top:2px;">WILDLIGHT</div>
+    </a>
+    <nav style="display:flex; gap:40px; font-size:15px; letter-spacing:0.04em;">
+      <a href="Startseite.dc.html">Start</a>
+      <a href="Ueber-mich.dc.html">Über mich</a>
+      <a href="Fotografie.dc.html">Fotografie</a>
+      <a href="QA.dc.html">Q + A</a>
+      <a href="Kontakt.dc.html" style="border-bottom:1px solid #B08A52; padding-bottom:4px;">Kontakt</a>
+    </nav>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 480px; gap:112px; padding:112px 120px 120px; align-items:start;">
+    <!-- Form -->
+    <div>
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:50px; font-weight:500; margin:0;">Erzählt mir von <span style="font-style:italic; color:#8A6D3F;">euch</span></h1>
+      <div style="width:48px; height:1px; background:#B08A52; margin:24px 0 0;"></div>
+      <p style="font-size:17px; line-height:1.8; color:#5A5449; margin:28px 0 0;">Du interessierst dich für ein Shooting oder hast Fragen? Dann erzähl mir gerne ein bisschen über euch und eure Wünsche. Je mehr ich von euch erfahre, desto besser kann ich eure Geschichte in Bildern festhalten.</p>
+
+      <div style="display:flex; flex-direction:column; gap:28px; margin-top:56px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px;">
+          <label style="display:flex; flex-direction:column; gap:10px; font-size:14px; letter-spacing:0.04em; color:#5A5449;">Dein Name*
+            <input type="text" style="height:52px; border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:0 18px; font-family:'Mulish',sans-serif; font-size:16px; color:#3B372F;">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:10px; font-size:14px; letter-spacing:0.04em; color:#5A5449;">Deine Email*
+            <input type="email" style="height:52px; border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:0 18px; font-family:'Mulish',sans-serif; font-size:16px; color:#3B372F;">
+          </label>
+        </div>
+        <label style="display:flex; flex-direction:column; gap:10px; font-size:14px; letter-spacing:0.04em; color:#5A5449;">Deine Telefonnummer
+          <input type="tel" style="height:52px; border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:0 18px; font-family:'Mulish',sans-serif; font-size:16px; color:#3B372F;">
+        </label>
+        <label style="display:flex; flex-direction:column; gap:10px; font-size:14px; letter-spacing:0.04em; color:#5A5449;">Anlass, gewünschter Zeitraum oder eure Vorstellung*
+          <input type="text" style="height:52px; border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:0 18px; font-family:'Mulish',sans-serif; font-size:16px; color:#3B372F;">
+        </label>
+        <label style="display:flex; flex-direction:column; gap:10px; font-size:14px; letter-spacing:0.04em; color:#5A5449;">Erzählt mir von euch*
+          <textarea rows="5" style="border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:14px 18px; font-family:'Mulish',sans-serif; font-size:16px; line-height:1.6; color:#3B372F; resize:vertical;"></textarea>
+        </label>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="font-size:14px; letter-spacing:0.04em; color:#5A5449;">Wie bist du auf mich aufmerksam geworden?</div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <sc-for list="{{ sources }}" as="s" hint-placeholder-count="4">
+              <div onClick="{{ s.pick }}" style="height:46px; display:inline-flex; align-items:center; padding:0 24px; border:1px solid {{ s.border }}; background:{{ s.bg }}; color:{{ s.color }}; border-radius:999px; font-size:15px; cursor:pointer;">{{ s.label }}</div>
+            </sc-for>
+          </div>
+        </div>
+        <label style="display:flex; gap:14px; align-items:flex-start; cursor:pointer;">
+          <input type="checkbox" style="width:20px; height:20px; margin-top:2px; accent-color:#8A6D3F;">
+          <span style="font-size:14px; line-height:1.65; color:#5A5449;">Ich habe die Datenschutzerklärung gelesen und verstanden. Ich willige ein, dass meine angegebenen Daten für die Kommunikation und Kontaktaufnahme verwendet werden dürfen. Die Einwilligung kann jederzeit widerrufen werden.</span>
+        </label>
+        <div><div style="display:inline-flex; align-items:center; justify-content:center; height:54px; padding:0 48px; background:#3B372F; color:#F7F4EE; border-radius:999px; font-size:15px; letter-spacing:0.08em; cursor:pointer;" style-hover="background:#8A6D3F;">Anfrage senden</div></div>
+      </div>
+    </div>
+
+    <!-- Side -->
+    <div style="display:flex; flex-direction:column; gap:36px;">
+      <div style="position:relative; height:520px; border-radius:240px 240px 4px 4px; overflow:hidden; background:repeating-linear-gradient(45deg,#E4E1D8,#E4E1D8 10px,#DDD9CE 10px,#DDD9CE 20px);">
+        <div style="position:absolute; inset:0; background:radial-gradient(ellipse 90% 55% at 65% 5%, rgba(201,162,106,0.32), transparent 62%);"></div>
+        <div style="position:absolute; top:20px; left:24px; font-family:monospace; font-size:12px; color:#6E675E;">portrait joanna · hochformat</div>
+        <div style="position:absolute; left:50%; bottom:28px; transform:translateX(-50%) rotate(-4deg); background:#332F28; color:#EDD9B8; border-radius:999px; padding:10px 22px; font-size:13px; letter-spacing:0.06em; white-space:nowrap; box-shadow:0 6px 18px rgba(59,55,47,0.25);">★ Ich freue mich auf euch!</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:26px; line-height:1.4;">Ich freue mich darauf, eure Geschichte kennenzulernen</div>
+        <p style="font-size:16px; color:#5A5449; margin:20px 0 0;">Folge mir gerne auf Instagram <a href="https://www.instagram.com/joanna.wildlight" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; color:#8A6D3F;">„Joanna.wildlight“</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="background:#2B2822; color:#EDEAE0; padding:64px 120px 40px; text-align:center;">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:24px; letter-spacing:0.06em;">Joanna Bartels</div>
+    <div style="font-size:14px; color:#A8A190; margin-top:8px;">Fotografin für Bremen und 25km Umkreis</div>
+    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:#C0B9A6; margin-top:24px;">„Fotografie ist für mich das Festhalten von kleinen Wundern.“</div>
+    <div style="display:flex; gap:32px; justify-content:center; font-size:14px; color:#CFC9BB; margin-top:32px;">
+      <a href="#" style-hover="color:#EDD9B8;">Datenschutz</a>
+      <a href="#" style-hover="color:#EDD9B8;">Cookies</a>
+      <a href="#" style-hover="color:#EDD9B8;">Impressum</a>
+    </div>
+    <div style="font-size:12px; color:#7E786A; margin-top:32px; border-top:1px solid #3B372F; padding-top:24px;">© 2026 Joanna Bartels | All rights Reserved</div>
+  </div>
+</div>
+</div>
+
+<!-- ================= MOBILE ================= -->
+<div style="display:flex; flex-direction:column; gap:12px;">
+<div style="font-family:monospace; font-size:12px; color:#6E675E;">Kontakt · Mobile 390</div>
+<div style="width:390px; background:#F7F4EE; box-shadow:0 12px 48px rgba(59,55,47,0.14);">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; height:64px; padding:0 8px 0 20px; border-bottom:1px solid #EBE7DC;">
+    <a href="Startseite.dc.html">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:20px; letter-spacing:0.26em;">JOANNA</div>
+      <div style="font-size:7px; letter-spacing:0.5em; color:#9A937F;">WILDLIGHT</div>
+    </a>
+    <div style="width:48px; height:48px; display:flex; flex-direction:column; gap:6px; align-items:center; justify-content:center; cursor:pointer;">
+      <div style="width:24px; height:1.5px; background:#3B372F;"></div>
+      <div style="width:24px; height:1.5px; background:#3B372F;"></div>
+    </div>
+  </div>
+
+  <div style="padding:64px 24px 72px;">
+    <h1 style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:500; margin:0;">Erzählt mir von <span style="font-style:italic; color:#8A6D3F;">euch</span></h1>
+    <div style="width:44px; height:1px; background:#B08A52; margin:20px 0 0;"></div>
+    <p style="font-size:16px; line-height:1.75; color:#5A5449; margin:24px 0 0;">Du interessierst dich für ein Shooting oder hast Fragen? Dann erzähl mir gerne ein bisschen über euch und eure Wünsche. Je mehr ich von euch erfahre, desto besser kann ich eure Geschichte in Bildern festhalten.</p>
+
+    <div style="display:flex; flex-direction:column; gap:24px; margin-top:44px;">
+      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; color:#5A5449;">Dein Name*
+        <input type="text" style="height:52px; border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:0 16px; font-family:'Mulish',sans-serif; font-size:16px; color:#3B372F;">
+      </label>
+      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; color:#5A5449;">Deine Email*
+        <input type="email" style="height:52px; border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:0 16px; font-family:'Mulish',sans-serif; font-size:16px; color:#3B372F;">
+      </label>
+      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; color:#5A5449;">Deine Telefonnummer
+        <input type="tel" style="height:52px; border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:0 16px; font-family:'Mulish',sans-serif; font-size:16px; color:#3B372F;">
+      </label>
+      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; color:#5A5449;">Anlass, gewünschter Zeitraum oder eure Vorstellung*
+        <input type="text" style="height:52px; border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:0 16px; font-family:'Mulish',sans-serif; font-size:16px; color:#3B372F;">
+      </label>
+      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; color:#5A5449;">Erzählt mir von euch*
+        <textarea rows="5" style="border:1px solid #D5D0C3; border-radius:4px; background:#FDFBF6; padding:14px 16px; font-family:'Mulish',sans-serif; font-size:16px; line-height:1.6; color:#3B372F; resize:vertical;"></textarea>
+      </label>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="font-size:14px; color:#5A5449;">Wie bist du auf mich aufmerksam geworden?</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <sc-for list="{{ sourcesM }}" as="s" hint-placeholder-count="4">
+            <div onClick="{{ s.pick }}" style="height:46px; display:inline-flex; align-items:center; padding:0 20px; border:1px solid {{ s.border }}; background:{{ s.bg }}; color:{{ s.color }}; border-radius:999px; font-size:15px; cursor:pointer;">{{ s.label }}</div>
+          </sc-for>
+        </div>
+      </div>
+      <label style="display:flex; gap:12px; align-items:flex-start; cursor:pointer;">
+        <input type="checkbox" style="width:22px; height:22px; margin-top:2px; accent-color:#8A6D3F;">
+        <span style="font-size:14px; line-height:1.65; color:#5A5449;">Ich habe die Datenschutzerklärung gelesen und verstanden. Ich willige ein, dass meine angegebenen Daten für die Kommunikation und Kontaktaufnahme verwendet werden dürfen. Die Einwilligung kann jederzeit widerrufen werden.</span>
+      </label>
+      <div style="display:flex; align-items:center; justify-content:center; height:54px; background:#3B372F; color:#F7F4EE; border-radius:999px; font-size:15px; letter-spacing:0.08em; cursor:pointer;" style-hover="background:#8A6D3F;">Anfrage senden</div>
+    </div>
+
+    <div style="text-align:center; margin-top:64px;">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:24px; line-height:1.4;">Ich freue mich darauf, eure Geschichte kennenzulernen</div>
+      <p style="font-size:16px; color:#5A5449; margin:18px 0 0;">Folge mir gerne auf Instagram <a href="https://www.instagram.com/joanna.wildlight" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; color:#8A6D3F;">„Joanna.wildlight“</a></p>
+    </div>
+  </div>
+
+  <div style="background:#2B2822; color:#EDEAE0; padding:56px 28px 32px; text-align:center;">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:22px; letter-spacing:0.06em;">Joanna Bartels</div>
+    <div style="font-size:14px; color:#A8A190; margin-top:8px;">Fotografin für Bremen und 25km Umkreis</div>
+    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; line-height:1.6; color:#C0B9A6; margin-top:20px;">„Fotografie ist für mich das Festhalten von kleinen Wundern.“</div>
+    <div style="display:flex; gap:24px; justify-content:center; font-size:14px; color:#CFC9BB; margin-top:28px;">
+      <a href="#" style-hover="color:#EDD9B8;">Datenschutz</a>
+      <a href="#" style-hover="color:#EDD9B8;">Cookies</a>
+      <a href="#" style-hover="color:#EDD9B8;">Impressum</a>
+    </div>
+    <div style="font-size:12px; color:#7E786A; margin-top:28px; border-top:1px solid #3B372F; padding-top:20px;">© 2026 Joanna Bartels | All rights Reserved</div>
+  </div>
+</div>
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { source: null, sourceM: null };
+  labels = ["Social Media", "Google", "Empfehlungen", "Anders"];
+  mapSources(key) {
+    const sel = this.state[key];
+    return this.labels.map((label) => {
+      const active = sel === label;
+      return {
+        label,
+        border: active ? "#8A6D3F" : "#D5D0C3",
+        bg: active ? "#8A6D3F" : "#FDFBF6",
+        color: active ? "#F7F4EE" : "#5A5449",
+        pick: () => this.setState({ [key]: label })
+      };
+    });
+  }
+  renderVals() {
+    return { sources: this.mapSources("source"), sourcesM: this.mapSources("sourceM") };
+  }
+}
+</script>
+</body>
+</html>

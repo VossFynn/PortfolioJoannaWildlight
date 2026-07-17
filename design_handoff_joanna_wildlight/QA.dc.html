@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Mulish:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#DDD9CF; }
+a { color:inherit; text-decoration:none; } a:hover { color:#8A6D3F; }
+</style>
+</helmet>
+<section style="padding:48px; display:flex; gap:72px; align-items:flex-start; font-family:'Mulish',sans-serif; color:#3B372F;">
+
+<!-- ================= DESKTOP ================= -->
+<div style="display:flex; flex-direction:column; gap:12px;">
+<div style="font-family:monospace; font-size:12px; color:#6E675E;">Q&amp;A · Desktop 1440</div>
+<div style="width:1440px; background:#F7F4EE; box-shadow:0 12px 48px rgba(59,55,47,0.14);">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 64px; height:88px; border-bottom:1px solid #EBE7DC;">
+    <a href="Startseite.dc.html" style="text-align:center;">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:26px; letter-spacing:0.28em;">JOANNA</div>
+      <div style="font-size:9px; letter-spacing:0.5em; color:#9A937F; margin-top:2px;">WILDLIGHT</div>
+    </a>
+    <nav style="display:flex; gap:40px; font-size:15px; letter-spacing:0.04em;">
+      <a href="Startseite.dc.html">Start</a>
+      <a href="Ueber-mich.dc.html">Über mich</a>
+      <a href="Fotografie.dc.html">Fotografie</a>
+      <a href="QA.dc.html" style="border-bottom:1px solid #B08A52; padding-bottom:4px;">Q + A</a>
+      <a href="Kontakt.dc.html">Kontakt</a>
+    </nav>
+  </div>
+
+  <div style="padding:112px 120px 88px; text-align:center;">
+    <h1 style="font-family:'Cormorant Garamond',serif; font-size:50px; font-weight:500; margin:0;">Fragen und <span style="font-style:italic; color:#8A6D3F;">Antworten</span></h1>
+    <div style="width:48px; height:1px; background:#B08A52; margin:28px auto 0;"></div>
+  </div>
+
+  <div style="margin-bottom:88px; border-top:1px solid #E4E1D8; border-bottom:1px solid #E4E1D8; padding:16px 0; white-space:nowrap; overflow:hidden; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:20px; color:#8A6D3F; text-align:center;">ehrlich · natürlich · nah · voller Gefühl · ehrlich · natürlich · nah · voller Gefühl · ehrlich · natürlich · nah</div>
+
+  <div style="padding:0 160px 120px; display:grid; grid-template-columns:1fr 1fr; gap:36px 48px; align-items:start;">
+    <sc-for list="{{ faqAll }}" as="f" hint-placeholder-count="9">
+      <div style="background:#FDFBF6; border:1px solid #ECE8DD; border-radius:4px; padding:36px 40px;">
+        <div style="width:9px; height:9px; background:#C9A26A; border-radius:999px;"></div>
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; margin-top:16px;">{{ f.q }}</div>
+        <p style="font-size:16px; line-height:1.75; color:#5A5449; margin:14px 0 0;">{{ f.a }}</p>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- CTA -->
+  <div style="position:relative; background:#332F28; color:#F7F4EE; padding:112px 120px; text-align:center; overflow:hidden;">
+    <div style="position:absolute; inset:0; background:radial-gradient(ellipse 60% 70% at 50% 0%, rgba(201,162,106,0.18), transparent 65%);"></div>
+    <div style="position:relative;">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:500; margin:0;">Noch Fragen <span style="font-style:italic; color:#EDD9B8;">offen</span>?</h2>
+      <a href="Kontakt.dc.html" style="display:inline-flex; align-items:center; justify-content:center; height:54px; padding:0 44px; border:1px solid #C9A26A; border-radius:999px; font-size:15px; letter-spacing:0.08em; color:#EDD9B8; margin-top:40px;" style-hover="background:#C9A26A; color:#332F28;">Termin anfrage</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="background:#2B2822; color:#EDEAE0; padding:64px 120px 40px; text-align:center;">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:24px; letter-spacing:0.06em;">Joanna Bartels</div>
+    <div style="font-size:14px; color:#A8A190; margin-top:8px;">Fotografin für Bremen und 25km Umkreis</div>
+    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:#C0B9A6; margin-top:24px;">„Fotografie ist für mich das Festhalten von kleinen Wundern.“</div>
+    <div style="display:flex; gap:32px; justify-content:center; font-size:14px; color:#CFC9BB; margin-top:32px;">
+      <a href="#" style-hover="color:#EDD9B8;">Datenschutz</a>
+      <a href="#" style-hover="color:#EDD9B8;">Cookies</a>
+      <a href="#" style-hover="color:#EDD9B8;">Impressum</a>
+    </div>
+    <div style="font-size:12px; color:#7E786A; margin-top:32px; border-top:1px solid #3B372F; padding-top:24px;">© 2026 Joanna Bartels | All rights Reserved</div>
+  </div>
+</div>
+</div>
+
+<!-- ================= MOBILE ================= -->
+<div style="display:flex; flex-direction:column; gap:12px;">
+<div style="font-family:monospace; font-size:12px; color:#6E675E;">Q&amp;A · Mobile 390 · Accordion</div>
+<div style="width:390px; background:#F7F4EE; box-shadow:0 12px 48px rgba(59,55,47,0.14);">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; height:64px; padding:0 8px 0 20px; border-bottom:1px solid #EBE7DC;">
+    <a href="Startseite.dc.html">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:20px; letter-spacing:0.26em;">JOANNA</div>
+      <div style="font-size:7px; letter-spacing:0.5em; color:#9A937F;">WILDLIGHT</div>
+    </a>
+    <div style="width:48px; height:48px; display:flex; flex-direction:column; gap:6px; align-items:center; justify-content:center; cursor:pointer;">
+      <div style="width:24px; height:1.5px; background:#3B372F;"></div>
+      <div style="width:24px; height:1.5px; background:#3B372F;"></div>
+    </div>
+  </div>
+
+  <div style="padding:64px 24px 48px; text-align:center;">
+    <h1 style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:500; margin:0;">Fragen und <span style="font-style:italic; color:#8A6D3F;">Antworten</span></h1>
+    <div style="width:44px; height:1px; background:#B08A52; margin:22px auto 0;"></div>
+  </div>
+
+  <div style="margin-bottom:48px; border-top:1px solid #E4E1D8; border-bottom:1px solid #E4E1D8; padding:14px 0; white-space:nowrap; overflow:hidden; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:#8A6D3F; text-align:center;">ehrlich · natürlich · nah · voller Gefühl · ehrlich · natürlich · nah</div>
+
+  <div style="padding:0 24px 72px; display:flex; flex-direction:column; gap:14px;">
+    <sc-for list="{{ faqMobile }}" as="f" hint-placeholder-count="9">
+      <div style="background:#FDFBF6; border:1px solid #ECE8DD; border-radius:4px;">
+        <div onClick="{{ f.toggle }}" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 22px; min-height:44px; cursor:pointer;">
+          <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; line-height:1.4;">{{ f.q }}</div>
+          <div style="font-size:20px; color:#8A6D3F; flex-shrink:0; width:24px; text-align:center;">{{ f.icon }}</div>
+        </div>
+        <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:16px; line-height:1.75; color:#5A5449; margin:0; padding:0 22px 24px;">{{ f.a }}</p>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="position:relative; background:#332F28; color:#F7F4EE; padding:72px 28px; text-align:center; overflow:hidden;">
+    <div style="position:absolute; inset:0; background:radial-gradient(ellipse 90% 60% at 50% 0%, rgba(201,162,106,0.18), transparent 65%);"></div>
+    <div style="position:relative;">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:29px; font-weight:500; margin:0;">Noch Fragen <span style="font-style:italic; color:#EDD9B8;">offen</span>?</h2>
+      <a href="Kontakt.dc.html" style="display:inline-flex; align-items:center; justify-content:center; height:52px; padding:0 40px; border:1px solid #C9A26A; border-radius:999px; font-size:15px; letter-spacing:0.08em; color:#EDD9B8; margin-top:32px;" style-hover="background:#C9A26A; color:#332F28;">Termin anfrage</a>
+    </div>
+  </div>
+
+  <div style="background:#2B2822; color:#EDEAE0; padding:56px 28px 32px; text-align:center;">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:22px; letter-spacing:0.06em;">Joanna Bartels</div>
+    <div style="font-size:14px; color:#A8A190; margin-top:8px;">Fotografin für Bremen und 25km Umkreis</div>
+    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; line-height:1.6; color:#C0B9A6; margin-top:20px;">„Fotografie ist für mich das Festhalten von kleinen Wundern.“</div>
+    <div style="display:flex; gap:24px; justify-content:center; font-size:14px; color:#CFC9BB; margin-top:28px;">
+      <a href="#" style-hover="color:#EDD9B8;">Datenschutz</a>
+      <a href="#" style-hover="color:#EDD9B8;">Cookies</a>
+      <a href="#" style-hover="color:#EDD9B8;">Impressum</a>
+    </div>
+    <div style="font-size:12px; color:#7E786A; margin-top:28px; border-top:1px solid #3B372F; padding-top:20px;">© 2026 Joanna Bartels | All rights Reserved</div>
+  </div>
+</div>
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { open: 0 };
+  faq = [
+    { q: "Wo findet das Shooting statt?", a: "Ich bin im Raum Bremen in einem Umkreis von ca. 30 km unterwegs - für Herzensprojekte auch mal weiter." },
+    { q: "Fotografierst du auch Hochzeiten?", a: "Ja! Besonders gern kleine, intime Feiern voller Nähe und echter Emotionen. Wenn ihr euch in meinem Stil wiederfindet, freue ich mich auf eure Anfrage." },
+    { q: "Wie lange dauert es, bis wir die Bilder bekommen?", a: "In der Regel dauert es ca. 3-4 Wochen. Ich nehme mir die Zeit, jede Aufnahme sorgfältig auszusuchen und zu bearbeiten, damit ihr euch lange daran erfreuen könnt." },
+    { q: "Wie läuft ein Shooting bei dir ab?", a: "Ganz entspannt. Ich begleite euch mit Herz und einem offenen Blick. Kein Stress, nur ihr, so wie ihr seid. Ob draußen in der Natur oder bei euch zu Hause. Ich schaffe Raum, damit echte Momente entstehen können." },
+    { q: "Was, wenn es an unserem Tag regnet?", a: "Kein Drama! Wir machen das Beste daraus. Ist es einigermaßen trocken, kann das Shooting i.d.R. stattfinden. Sollte es stark regnen, haben wir einen Ersatztermin, den wir vorher auch schon ausmachen." },
+    { q: "Bekomme ich auch die unbearbeiteten Bilder?", a: "Nein. Ich gebe grundsätzlich keine unbearbeiteten Bilder heraus. Die Auswahl und Bearbeitung gehört zu meinem kreativen Prozess und sie machen den Look meiner Fotografie aus." },
+    { q: "Was sollen wir anziehen?", a: "Am besten etwas, worin ihr euch wohlfühlt. Natürliche, gedeckte Farben passen am schönsten zu meinem Bildstil. Ich schicke euch gern vorab ein kleines Inspirations-PDF zur Outfitwahl." },
+    { q: "Fotografierst du auch Tiere?", a: "Unbedingt! Tiere sind Familienmitglieder. Ich selbst lebe mit zwei Hunden und zwei Katzen zusammen und ich weiß, wie kostbar gemeinsame Erinnerungen mit ihnen sind. =)" },
+    { q: "Wie können wir bei dir bezahlen?", a: "Du kannst ganz entspannt per Überweisung oder Paypal bezahlen. Den Betrag solltest du innerhalb einer Woche begleichen." }
+  ];
+  renderVals() {
+    const open = this.state.open;
+    return {
+      faqAll: this.faq,
+      faqMobile: this.faq.map((f, i) => ({
+        ...f,
+        open: open === i,
+        icon: open === i ? "–" : "+",
+        toggle: () => this.setState({ open: open === i ? -1 : i })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
