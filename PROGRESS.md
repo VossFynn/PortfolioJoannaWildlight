@@ -1,8 +1,8 @@
 # PROGRESS — Joanna Wildlight Portfolio
 
 ## Stand
-- Zuletzt erledigt: Phase 3 — PlaceholderImage-Komponente + Streifen-/Glow-Tokens
-- In Arbeit / Als Nächstes: Phase 4 — Primitive (Button, Marquee, StickerBadge, Polaroid, ArchImage, SunCircle, SectionDivider, ScrollReveal)
+- Zuletzt erledigt: Phase 4 — Primitive (Accent, Button, Marquee, SectionDivider, StickerBadge, SunCircle, Polaroid, ArchImage, ScrollReveal)
+- In Arbeit / Als Nächstes: Phase 5 — Layout (Header/Nav, Footer, CTABand)
 - Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). app/page.tsx ist minimaler Platzhalter bis Phase 7.
 - Aktualisiert: Session 2, 2026-07-18
 
@@ -28,10 +28,10 @@
 - [x] Placeholder-Komponente (ohne src: gestreift + Monospace-Label + warmer Radial-Glow; mit src: next/image ohne Glow)
 
 ### Phase 4 — Primitive
-- [ ] Button (Varianten: Outline dunkel, Gefüllt dunkel, Outline gold auf dunklem Grund) + Hover-Transitions
-- [ ] Marquee/Laufband (endlos ~30s, Inhalt dupliziert, pausiert bei prefers-reduced-motion)
-- [ ] StickerBadge, Polaroid, ArchImage (Bogen-Radius), SunCircle, SectionDivider (48×1px Gold)
-- [ ] ScrollReveal (IntersectionObserver, einmalig, opt. Stagger; bei reduced-motion deaktiviert)
+- [x] Button (Varianten: Outline dunkel, Gefüllt dunkel, Outline gold auf dunklem Grund) + Hover-Transitions
+- [x] Marquee/Laufband (endlos ~30s, Inhalt dupliziert, pausiert bei prefers-reduced-motion)
+- [x] StickerBadge, Polaroid, ArchImage (Bogen-Radius), SunCircle, SectionDivider (48×1px Gold)
+- [x] ScrollReveal (IntersectionObserver, einmalig, opt. Stagger; bei reduced-motion deaktiviert)
 
 ### Phase 5 — Layout
 - [ ] Header/Nav (aktive Seite Gold-Unterstrich, Hover gold; Mobile-Burger → Fullscreen-Drawer im gleichen Stil)

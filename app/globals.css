@@ -49,6 +49,7 @@
 
   /* Sonnenkreis-Glow */
   --jw-sun-glow: rgba(201, 162, 106, 0.45);
+  --jw-sun-glow-mid: rgba(201, 162, 106, 0.1);
 
   /* Bild-Platzhalter: Streifen (Variante je Sektions-BG) + warmer Glow */
   --jw-stripe-a: #e4e1d8; /* auf Ivory-Sektionen */
@@ -100,4 +101,42 @@
 :focus-visible {
   outline: 2px solid var(--jw-gold);
   outline-offset: 2px;
+}
+
+/* Marquee/Laufband: Inhalt ist dupliziert, -50% = nahtloser Loop */
+@keyframes jw-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.jw-marquee-track {
+  animation: jw-marquee 30s linear infinite;
+}
+
+/* ScrollReveal: Elemente blenden beim ersten Sichtbarwerden ein */
+.jw-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+  transition-delay: var(--jw-reveal-delay, 0s);
+}
+.jw-reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jw-marquee-track {
+    animation: none;
+  }
+  .jw-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
