@@ -49,6 +49,13 @@
 
   /* Sonnenkreis-Glow */
   --jw-sun-glow: rgba(201, 162, 106, 0.45);
+
+  /* Bild-Platzhalter: Streifen (Variante je Sektions-BG) + warmer Glow */
+  --jw-stripe-a: #e4e1d8; /* auf Ivory-Sektionen */
+  --jw-stripe-b: #ddd9ce;
+  --jw-stripe-alt-a: #edeae1; /* auf Greige-Sektionen */
+  --jw-stripe-alt-b: #e4e0d5;
+  --jw-placeholder-glow: rgba(201, 162, 106, 0.32);
 }
 
 @theme inline {

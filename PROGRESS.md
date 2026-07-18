@@ -1,8 +1,8 @@
 # PROGRESS — Joanna Wildlight Portfolio
 
 ## Stand
-- Zuletzt erledigt: Phase 2 — Content-Schicht komplett (about/photography/faq/testimonials/contact + ContentProvider mit local-provider)
-- In Arbeit / Als Nächstes: Phase 3 — Placeholder-Komponente (Manifest existiert bereits)
+- Zuletzt erledigt: Phase 3 — PlaceholderImage-Komponente + Streifen-/Glow-Tokens
+- In Arbeit / Als Nächstes: Phase 4 — Primitive (Button, Marquee, StickerBadge, Polaroid, ArchImage, SunCircle, SectionDivider, ScrollReveal)
 - Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). app/page.tsx ist minimaler Platzhalter bis Phase 7.
 - Aktualisiert: Session 2, 2026-07-18
 
@@ -24,8 +24,8 @@
 - [x] ContentProvider-Interface + local-provider; async Getter: getHeroImages, getTestimonials, getFaqItems, getPhotoCategories, getPageContent
 
 ### Phase 3 — Bilder
-- [ ] Bild-Manifest: semantischer Key → { src: null, label, motiv/format, ratio }
-- [ ] Placeholder-Komponente (ohne src: gestreift + Monospace-Label + warmer Radial-Glow; mit src: next/image ohne Glow)
+- [x] Bild-Manifest: semantischer Key → { src: null, label, motiv/format, ratio }
+- [x] Placeholder-Komponente (ohne src: gestreift + Monospace-Label + warmer Radial-Glow; mit src: next/image ohne Glow)
 
 ### Phase 4 — Primitive
 - [ ] Button (Varianten: Outline dunkel, Gefüllt dunkel, Outline gold auf dunklem Grund) + Hover-Transitions
