@@ -22,6 +22,10 @@
   --jw-gold-pale: #edd9b8; /* Akzente/CTA-Text auf dunklem Grund */
   --jw-dark: #332f28; /* CTA-Band, Sticker */
   --jw-footer: #2b2822;
+  --jw-footer-text: #edeae0;
+  --jw-footer-muted: #a8a190;
+  --jw-footer-quote: #c0b9a6;
+  --jw-footer-copyright: #7e786a;
   --jw-cta-text: #cfc9bb; /* Fließtext auf CTA-Band */
   --jw-quote-dark: #b0a890; /* Zitate auf dunklem Grund */
 
@@ -51,6 +55,9 @@
   --jw-sun-glow: rgba(201, 162, 106, 0.45);
   --jw-sun-glow-mid: rgba(201, 162, 106, 0.1);
 
+  /* CTA-Band-Glow */
+  --jw-cta-glow: rgba(201, 162, 106, 0.18);
+
   /* Bild-Platzhalter: Streifen (Variante je Sektions-BG) + warmer Glow */
   --jw-stripe-a: #e4e1d8; /* auf Ivory-Sektionen */
   --jw-stripe-b: #ddd9ce;
@@ -76,6 +83,10 @@
   --color-gold-pale: var(--jw-gold-pale);
   --color-dark: var(--jw-dark);
   --color-footer: var(--jw-footer);
+  --color-footer-text: var(--jw-footer-text);
+  --color-footer-muted: var(--jw-footer-muted);
+  --color-footer-quote: var(--jw-footer-quote);
+  --color-footer-copyright: var(--jw-footer-copyright);
   --color-cta-text: var(--jw-cta-text);
   --color-quote-dark: var(--jw-quote-dark);
   --color-white: #ffffff;

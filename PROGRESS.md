@@ -1,8 +1,8 @@
 # PROGRESS — Joanna Wildlight Portfolio
 
 ## Stand
-- Zuletzt erledigt: Phase 4 — Primitive (Accent, Button, Marquee, SectionDivider, StickerBadge, SunCircle, Polaroid, ArchImage, ScrollReveal)
-- In Arbeit / Als Nächstes: Phase 5 — Layout (Header/Nav, Footer, CTABand)
+- Zuletzt erledigt: Phase 5 — Layout (Header mit Drawer, Footer, CTABand; in RootLayout verdrahtet)
+- In Arbeit / Als Nächstes: Phase 6 — HeroCarousel
 - Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). app/page.tsx ist minimaler Platzhalter bis Phase 7.
 - Aktualisiert: Session 2, 2026-07-18
 
@@ -34,9 +34,9 @@
 - [x] ScrollReveal (IntersectionObserver, einmalig, opt. Stagger; bei reduced-motion deaktiviert)
 
 ### Phase 5 — Layout
-- [ ] Header/Nav (aktive Seite Gold-Unterstrich, Hover gold; Mobile-Burger → Fullscreen-Drawer im gleichen Stil)
-- [ ] Footer
-- [ ] CTABand-Komponente (wiederverwendbar, Gold-Glow, Gold-Outline-Button)
+- [x] Header/Nav (aktive Seite Gold-Unterstrich, Hover gold; Mobile-Burger → Fullscreen-Drawer im gleichen Stil)
+- [x] Footer
+- [x] CTABand-Komponente (wiederverwendbar, Gold-Glow, Gold-Outline-Button)
 
 ### Phase 6 — Hero-Carousel
 - [ ] HeroCarousel: Crossfade, Auto-Advance 5–6s endlos, Overlay-Verlauf + zentrierter Text bleiben fix über allen Slides, prefers-reduced-motion = statisch erstes Bild, optional dezente Dots, a11y (aria-live polite, Alt/Label)
