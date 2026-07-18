@@ -1,10 +1,10 @@
 # PROGRESS — Joanna Wildlight Portfolio
 
 ## Stand
-- Zuletzt erledigt: Phase 1 — Design-Tokens (globals.css + Tailwind-v4-@theme-Mapping)
-- In Arbeit / Als Nächstes: Phase 2 — Content-Schicht (Copy aus .dc.html extrahieren)
+- Zuletzt erledigt: Phase 2 — Content-Schicht komplett (about/photography/faq/testimonials/contact + ContentProvider mit local-provider)
+- In Arbeit / Als Nächstes: Phase 3 — Placeholder-Komponente (Manifest existiert bereits)
 - Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). app/page.tsx ist minimaler Platzhalter bis Phase 7.
-- Aktualisiert: Session 1, 2026-07-17
+- Aktualisiert: Session 2, 2026-07-18
 
 ---
 
@@ -19,9 +19,9 @@
 - [x] Tokens in Tailwind-Theme gemappt; Referenzierung nur über Tokens
 
 ### Phase 2 — Content-Schicht (CMS-ready)
-- [ ] TS-Typen: Testimonial, FaqItem, PhotoCategory, NavItem, PageMeta, HeroImage, ContactSource
-- [ ] content/-Daten mit echter Copy aus den .dc.html (site, home, about, photography, faq, testimonials)
-- [ ] ContentProvider-Interface + local-provider; async Getter: getHeroImages, getTestimonials, getFaqItems, getPhotoCategories, getPageContent
+- [x] TS-Typen: Testimonial, FaqItem, PhotoCategory, NavItem, PageMeta, HeroImage, ContactSource
+- [x] content/-Daten mit echter Copy aus den .dc.html (site, home, about, photography, faq, testimonials)
+- [x] ContentProvider-Interface + local-provider; async Getter: getHeroImages, getTestimonials, getFaqItems, getPhotoCategories, getPageContent
 
 ### Phase 3 — Bilder
 - [ ] Bild-Manifest: semantischer Key → { src: null, label, motiv/format, ratio }
@@ -63,3 +63,5 @@
 
 ## Getroffene Entscheidungen
 - Projekt-Root = `/Users/U730282/.private/PortfolioJoannaWildlight/` (Next.js-App direkt im Root, Design-Handoff bleibt in `design_handoff_joanna_wildlight/`).
+- Testimonials: Das Design enthält nur 1 echtes Zitat (Sarah und Sven), zeigt aber 3 Dots. Einträge 2+3 sind als `isPlaceholder: true` markierte Platzhalter — vor Launch durch echte Google-Rezensionen ersetzen (`content/testimonials.ts`).
+- ContentProvider: `getContentProvider()` in `lib/content/provider.ts` ist die einzige Austauschstelle für einen späteren CMS-Adapter; Getter laden content/-Module lazy via dynamic import.
