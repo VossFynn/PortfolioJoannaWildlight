@@ -20,6 +20,7 @@
   --jw-gold: #b08a52; /* Trennstriche, Sterne, Dots aktiv */
   --jw-gold-light: #c9a26a; /* Punkte, CTA-Border, Glow */
   --jw-gold-pale: #edd9b8; /* Akzente/CTA-Text auf dunklem Grund */
+  --jw-dot-inactive: #c4bfb2; /* Karussell-Dots inaktiv */
   --jw-dark: #332f28; /* CTA-Band, Sticker */
   --jw-footer: #2b2822;
   --jw-footer-text: #edeae0;
@@ -64,6 +65,8 @@
   --jw-stripe-b: #ddd9ce;
   --jw-stripe-alt-a: #edeae1; /* auf Greige-Sektionen */
   --jw-stripe-alt-b: #e4e0d5;
+  --jw-stripe-card-a: #e9e6dd; /* auf Card-Hintergrund (Karten, Polaroid) */
+  --jw-stripe-card-b: #e0dcd1;
   --jw-placeholder-glow: rgba(201, 162, 106, 0.32);
 }
 
@@ -82,6 +85,7 @@
   --color-gold: var(--jw-gold);
   --color-gold-light: var(--jw-gold-light);
   --color-gold-pale: var(--jw-gold-pale);
+  --color-dot-inactive: var(--jw-dot-inactive);
   --color-dark: var(--jw-dark);
   --color-footer: var(--jw-footer);
   --color-footer-text: var(--jw-footer-text);

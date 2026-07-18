@@ -1,8 +1,8 @@
 # PROGRESS — Joanna Wildlight Portfolio
 
 ## Stand
-- Zuletzt erledigt: Phase 6 — HeroCarousel (Crossfade 5,5s, fixes Overlay + Titel, reduced-motion statisch, Dots, aria-live)
-- In Arbeit / Als Nächstes: Phase 7 — Startseite
+- Zuletzt erledigt: Phase 7 — Startseite komplett (inkl. TestimonialCarousel aus Phase 8)
+- In Arbeit / Als Nächstes: Phase 7 — Über mich
 - Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). app/page.tsx ist minimaler Platzhalter bis Phase 7.
 - Aktualisiert: Session 2, 2026-07-18
 
@@ -42,14 +42,14 @@
 - [x] HeroCarousel: Crossfade, Auto-Advance 5–6s endlos, Overlay-Verlauf + zentrierter Text bleiben fix über allen Slides, prefers-reduced-motion = statisch erstes Bild, optional dezente Dots, a11y (aria-live polite, Alt/Label)
 
 ### Phase 7 — Seiten (Copy 1:1 aus .dc.html, Akzentwörter als italic-Gold-<span>)
-- [ ] Startseite (Hero-Carousel, Intro+Collage, Laufband, "festhalte"-Karten, "Werke"-Grid mit Versatz, Testimonials, Trust-Zeile, CTA-Band, Footer)
+- [x] Startseite (Hero-Carousel, Intro+Collage, Laufband, "festhalte"-Karten, "Werke"-Grid mit Versatz, Testimonials, Trust-Zeile, CTA-Band, Footer)
 - [ ] Über mich
 - [ ] Fotografie (6 alternierende Kategorie-Sektionen, exakte Copy + Rotationen + Wechsel-BG)
 - [ ] Q+A (Desktop: 9 Karten offen; Mobile: Accordion, eine offen, erste initial offen)
 - [ ] Kontakt (Formular + Client-Validierung, Quellen-Chips Single-Select, Datenschutz-Checkbox Pflicht, Submit gegen austauschbaren Server-Action/Route-Stub mit TODO für Mail-Service)
 
 ### Phase 8 — Interaktionen & Feinschliff
-- [ ] Testimonial-Karussell (Pfeile + Dots, 3 Einträge, opt. Auto-Rotate 6s)
+- [x] Testimonial-Karussell (Pfeile + Dots, 3 Einträge, opt. Auto-Rotate 6s)
 - [ ] Responsive gegen 1440/390 geprüft (Grids einspaltig, Bogen-Portraits mobil max ~300px zentriert)
 - [ ] a11y: semantisches HTML, Alt aus Labels, Tastaturbedienung, sichtbare Focus-States
 - [ ] prefers-reduced-motion überall respektiert

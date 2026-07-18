@@ -6,8 +6,8 @@ interface PlaceholderImageProps {
   imageKey: string;
   /** Größe/Radius/Rotation kommen vom Aufrufer (absolute/relative Fläche). */
   className?: string;
-  /** Streifen-Variante passend zum Sektions-Hintergrund. */
-  tone?: "ivory" | "greige";
+  /** Streifen-Variante passend zum umgebenden Hintergrund. */
+  tone?: "ivory" | "greige" | "card";
   /** Kleinere Label-Schrift auf Mobile-Flächen. */
   labelSize?: "sm" | "md";
   sizes?: string;
@@ -44,8 +44,12 @@ export function PlaceholderImage({
     );
   }
 
-  const stripeA = tone === "greige" ? "var(--jw-stripe-alt-a)" : "var(--jw-stripe-a)";
-  const stripeB = tone === "greige" ? "var(--jw-stripe-alt-b)" : "var(--jw-stripe-b)";
+  const stripes = {
+    ivory: ["var(--jw-stripe-a)", "var(--jw-stripe-b)"],
+    greige: ["var(--jw-stripe-alt-a)", "var(--jw-stripe-alt-b)"],
+    card: ["var(--jw-stripe-card-a)", "var(--jw-stripe-card-b)"],
+  } as const;
+  const [stripeA, stripeB] = stripes[tone];
   const glowX = asset.glowX ?? 50;
 
   return (

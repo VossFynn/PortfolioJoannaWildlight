@@ -14,7 +14,7 @@ export function Polaroid({ imageKey, rotate = 5, className = "" }: PolaroidProps
       className={`bg-card p-[9px] pb-[30px] shadow-sticker ${className}`}
       style={{ transform: `rotate(${rotate}deg)` }}
     >
-      <PlaceholderImage imageKey={imageKey} labelSize="sm" className="h-full w-full" />
+      <PlaceholderImage imageKey={imageKey} tone="card" labelSize="sm" className="h-full w-full" />
     </div>
   );
 }
