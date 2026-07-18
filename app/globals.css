@@ -47,9 +47,10 @@
   --jw-button-height: 54px;
   --jw-button-padding-x: 38px;
 
-  /* Hero-Overlay */
+  /* Hero-Overlay (Verlauf unten dunkel + warmer Gold-Schleier oben) */
   --jw-hero-overlay-from: rgba(46, 42, 35, 0.62);
   --jw-hero-overlay-to: rgba(46, 42, 35, 0.08);
+  --jw-hero-glow: rgba(201, 162, 106, 0.35);
 
   /* Sonnenkreis-Glow */
   --jw-sun-glow: rgba(201, 162, 106, 0.45);
