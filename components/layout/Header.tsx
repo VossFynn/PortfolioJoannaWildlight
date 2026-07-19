@@ -19,11 +19,7 @@ export function Header({ logo, nav }: HeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  // Drawer schließt bei Navigation; solange offen, Seiten-Scroll sperren.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
+  // Solange der Drawer offen ist, Seiten-Scroll sperren; Escape schließt.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     const onKey = (e: KeyboardEvent) => {
@@ -104,6 +100,7 @@ export function Header({ logo, nav }: HeaderProps) {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
+                  onClick={() => setOpen(false)}
                   className={`font-display text-3xl transition-colors hover:text-gold-dark ${
                     active ? "italic text-gold-dark" : "text-ink"
                   }`}

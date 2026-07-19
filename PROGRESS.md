@@ -1,8 +1,8 @@
 # PROGRESS — Joanna Wildlight Portfolio
 
 ## Stand
-- Zuletzt erledigt: Phase 7 komplett — alle 5 Seiten gebaut, alle Routen prerendered + Smoke-Test 200
-- In Arbeit / Als Nächstes: Phase 8 — Responsive-/a11y-Prüfung gegen 1440/390
+- Zuletzt erledigt: ALLE PHASEN (0–9) abgeschlossen — Build/Lint/Typecheck sauber, alle 5 Routen prerendered, PROJECT_README.md geschrieben
+- In Arbeit / Als Nächstes: — (fertig; offen bleiben nur Inhalts-TODOs: echte Fotos ins Manifest, 2 echte Testimonials, Mail-Service in app/kontakt/actions.ts)
 - Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). Achtung: `rtk next build` meldete einmal fälschlich Erfolg aus stalem Zustand — zur Verifikation `npx next build` direkt nutzen und Routen-Liste prüfen.
 - Aktualisiert: Session 2, 2026-07-18
 
@@ -50,14 +50,14 @@
 
 ### Phase 8 — Interaktionen & Feinschliff
 - [x] Testimonial-Karussell (Pfeile + Dots, 3 Einträge, opt. Auto-Rotate 6s)
-- [ ] Responsive gegen 1440/390 geprüft (Grids einspaltig, Bogen-Portraits mobil max ~300px zentriert)
-- [ ] a11y: semantisches HTML, Alt aus Labels, Tastaturbedienung, sichtbare Focus-States
-- [ ] prefers-reduced-motion überall respektiert
+- [x] Responsive gegen 1440/390 geprüft (Grids einspaltig, Bogen-Portraits mobil max ~300px zentriert)
+- [x] a11y: semantisches HTML, Alt aus Labels, Tastaturbedienung, sichtbare Focus-States
+- [x] prefers-reduced-motion überall respektiert
 
 ### Phase 9 — Doku & Abschluss
-- [ ] PROJECT_README.md: Architektur/Ordnerstruktur + Run-Befehle; Platzhalter→echte Fotos ersetzen (Manifest, Keys, Schritte); wo Copy liegt + wie bearbeiten; CMS-Naht (welches Interface implementieren, was ein Adapter erfüllen muss); wo Tokens liegen
-- [ ] `npm run build` + Lint + Typecheck sauber
-- [ ] "Getroffene Entscheidungen"-Notiz in PROGRESS.md ergänzt
+- [x] PROJECT_README.md: Architektur/Ordnerstruktur + Run-Befehle; Platzhalter→echte Fotos ersetzen (Manifest, Keys, Schritte); wo Copy liegt + wie bearbeiten; CMS-Naht (welches Interface implementieren, was ein Adapter erfüllen muss); wo Tokens liegen
+- [x] `npm run build` + Lint + Typecheck sauber
+- [x] "Getroffene Entscheidungen"-Notiz in PROGRESS.md ergänzt
 
 ---
 
@@ -65,3 +65,9 @@
 - Projekt-Root = `/Users/U730282/.private/PortfolioJoannaWildlight/` (Next.js-App direkt im Root, Design-Handoff bleibt in `design_handoff_joanna_wildlight/`).
 - Testimonials: Das Design enthält nur 1 echtes Zitat (Sarah und Sven), zeigt aber 3 Dots. Einträge 2+3 sind als `isPlaceholder: true` markierte Platzhalter — vor Launch durch echte Google-Rezensionen ersetzen (`content/testimonials.ts`).
 - ContentProvider: `getContentProvider()` in `lib/content/provider.ts` ist die einzige Austauschstelle für einen späteren CMS-Adapter; Getter laden content/-Module lazy via dynamic import.
+- Platzhalter-Streifen in 3 Tönen (ivory/greige/card) als Tokens, exakt nach den drei Streifen-Paaren im Design; Karten-/Polaroid-Flächen nutzen `tone="card"`.
+- Hero-Carousel: 5,5s-Intervall, 1s-Crossfade; Dots werden bei prefers-reduced-motion per `motion-reduce:hidden` ausgeblendet (statisch = erstes Bild).
+- Q+A mobil: Accordion mit genau einer offenen Frage (erste initial), erneutes Tippen schließt (`open = -1`), wie im data-dc-script der Referenz.
+- Kontakt-Submit: Server Action `submitContactRequest` in `app/kontakt/actions.ts` als Stub (loggt + validiert minimal); TODO Mail-Service dort dokumentiert, Signatur stabil halten.
+- Fehlermeldungen im Formular: italic Gold-Dark (Design definiert keine Fehlerfarbe).
+- Footer-Sonderfarben (#EDEAE0/#A8A190/#C0B9A6/#7E786A) als eigene Tokens ergänzt statt Hex in der Komponente.

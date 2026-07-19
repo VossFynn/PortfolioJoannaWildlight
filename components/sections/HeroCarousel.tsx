@@ -20,12 +20,10 @@ const INTERVAL_MS = 5500;
  */
 export function HeroCarousel({ slides, title, subtitle }: HeroCarouselProps) {
   const [index, setIndex] = useState(0);
-  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduced.matches || slides.length < 2) return;
-    setAnimate(true);
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % slides.length);
     }, INTERVAL_MS);
@@ -77,9 +75,12 @@ export function HeroCarousel({ slides, title, subtitle }: HeroCarouselProps) {
         </p>
       </div>
 
-      {/* Dezente Dots */}
-      {animate && slides.length > 1 && (
-        <div aria-hidden className="absolute inset-x-0 bottom-3 flex justify-center gap-2.5 md:bottom-6">
+      {/* Dezente Dots (bei reduced-motion steht das erste Bild — Dots ausblenden) */}
+      {slides.length > 1 && (
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-3 flex justify-center gap-2.5 motion-reduce:hidden md:bottom-6"
+        >
           {slides.map((_, i) => (
             <span
               key={i}
