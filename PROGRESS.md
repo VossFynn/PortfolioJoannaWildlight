@@ -1,9 +1,9 @@
 # PROGRESS — Joanna Wildlight Portfolio
 
 ## Stand
-- Zuletzt erledigt: Phase 7 — Startseite komplett (inkl. TestimonialCarousel aus Phase 8)
-- In Arbeit / Als Nächstes: Phase 7 — Über mich
-- Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). app/page.tsx ist minimaler Platzhalter bis Phase 7.
+- Zuletzt erledigt: Phase 7 komplett — alle 5 Seiten gebaut, alle Routen prerendered + Smoke-Test 200
+- In Arbeit / Als Nächstes: Phase 8 — Responsive-/a11y-Prüfung gegen 1440/390
+- Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). Achtung: `rtk next build` meldete einmal fälschlich Erfolg aus stalem Zustand — zur Verifikation `npx next build` direkt nutzen und Routen-Liste prüfen.
 - Aktualisiert: Session 2, 2026-07-18
 
 ---
@@ -43,10 +43,10 @@
 
 ### Phase 7 — Seiten (Copy 1:1 aus .dc.html, Akzentwörter als italic-Gold-<span>)
 - [x] Startseite (Hero-Carousel, Intro+Collage, Laufband, "festhalte"-Karten, "Werke"-Grid mit Versatz, Testimonials, Trust-Zeile, CTA-Band, Footer)
-- [ ] Über mich
-- [ ] Fotografie (6 alternierende Kategorie-Sektionen, exakte Copy + Rotationen + Wechsel-BG)
-- [ ] Q+A (Desktop: 9 Karten offen; Mobile: Accordion, eine offen, erste initial offen)
-- [ ] Kontakt (Formular + Client-Validierung, Quellen-Chips Single-Select, Datenschutz-Checkbox Pflicht, Submit gegen austauschbaren Server-Action/Route-Stub mit TODO für Mail-Service)
+- [x] Über mich
+- [x] Fotografie (6 alternierende Kategorie-Sektionen, exakte Copy + Rotationen + Wechsel-BG)
+- [x] Q+A (Desktop: 9 Karten offen; Mobile: Accordion, eine offen, erste initial offen)
+- [x] Kontakt (Formular + Client-Validierung, Quellen-Chips Single-Select, Datenschutz-Checkbox Pflicht, Submit gegen austauschbaren Server-Action/Route-Stub mit TODO für Mail-Service)
 
 ### Phase 8 — Interaktionen & Feinschliff
 - [x] Testimonial-Karussell (Pfeile + Dots, 3 Einträge, opt. Auto-Rotate 6s)
