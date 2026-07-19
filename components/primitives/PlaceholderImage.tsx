@@ -1,5 +1,9 @@
-import Image from "next/image";
+"use client";
 
+import Image from "next/image";
+import { useRef, useState } from "react";
+
+import { Lightbox } from "@/components/primitives/Lightbox";
 import { withBasePath } from "@/lib/basePath";
 import { getImage } from "@/lib/images/manifest";
 
@@ -17,12 +21,15 @@ interface PlaceholderImageProps {
   labelSize?: "sm" | "md";
   sizes?: string;
   priority?: boolean;
+  /** Klick öffnet das Bild vergrößert in der Lightbox (Default an). */
+  expandable?: boolean;
 }
 
 /**
  * Bildfläche aus dem Manifest. Ohne src: gestreifter Platzhalter mit
  * Monospace-Label und warmem Radial-Glow (Design-Handoff). Mit src:
  * next/image (fill) ohne Glow — Austausch nur über lib/images/manifest.ts.
+ * Jedes echte Bild ist per Klick vergrößerbar (expandable={false} schaltet ab).
  */
 export function PlaceholderImage({
   imageKey,
@@ -31,21 +38,45 @@ export function PlaceholderImage({
   labelSize = "md",
   sizes,
   priority,
+  expandable = true,
 }: PlaceholderImageProps) {
   const asset = getImage(imageKey);
+  const [expanded, setExpanded] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   if (asset.src) {
     return (
-      <div className={`relative overflow-hidden ${className}`}>
-        <Image
-          src={withBasePath(asset.src)}
-          alt={asset.alt}
-          fill
-          className="object-cover"
-          sizes={sizes}
-          priority={priority}
-        />
-      </div>
+      <>
+        <div className={`relative overflow-hidden ${className}`}>
+          <Image
+            src={withBasePath(asset.src)}
+            alt={asset.alt}
+            fill
+            className="object-cover"
+            sizes={sizes}
+            priority={priority}
+          />
+          {expandable && (
+            <button
+              ref={triggerRef}
+              type="button"
+              onClick={() => setExpanded(true)}
+              aria-label={`Bild vergrößern: ${asset.alt}`}
+              className="absolute inset-0 cursor-zoom-in"
+            />
+          )}
+        </div>
+        {expandable && expanded && (
+          <Lightbox
+            src={asset.src}
+            alt={asset.alt}
+            onClose={() => {
+              setExpanded(false);
+              triggerRef.current?.focus();
+            }}
+          />
+        )}
+      </>
     );
   }
 

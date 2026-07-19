@@ -42,7 +42,7 @@ export function HeroCarousel({ slides, title, subtitle }: HeroCarouselProps) {
         <div
           key={slide.imageKey}
           className={`absolute inset-0 transition-opacity duration-1000 ${
-            i === index ? "opacity-100" : "opacity-0"
+            i === index ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
           aria-hidden={i !== index}
         >
@@ -65,8 +65,8 @@ export function HeroCarousel({ slides, title, subtitle }: HeroCarouselProps) {
         }}
       />
 
-      {/* Fixer Titel */}
-      <div className="absolute inset-x-6 bottom-9 text-ivory md:inset-x-0 md:bottom-22 md:text-center">
+      {/* Fixer Titel (click-through, damit der Bild-Zoom darunter erreichbar bleibt) */}
+      <div className="pointer-events-none absolute inset-x-6 bottom-9 text-ivory md:inset-x-0 md:bottom-22 md:text-center">
         <h1 className="font-display text-[32px] font-medium italic tracking-[0.12em] md:text-[58px] md:tracking-[0.16em]">
           {title}
         </h1>
