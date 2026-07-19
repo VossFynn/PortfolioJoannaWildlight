@@ -7,7 +7,17 @@ export const faqPage: FaqPageContent = {
       "Fragen und Antworten rund um Shootings mit Joanna Wildlight: Ablauf, Ort, Bildabgabe, Outfits, Bezahlung und mehr.",
   },
   headline: "Fragen und *Antworten*",
-  marqueeItems: ["ehrlich", "natürlich", "nah", "voller Gefühl"],
+  marqueeItems: [
+    "ehrlich",
+    "natürlich",
+    "nah",
+    "voller Gefühl",
+    "ungestellt",
+    "warm",
+    "lebendig",
+    "golden hour",
+    "echte Momente",
+  ],
   cta: {
     headline: "Noch Fragen *offen*?",
     buttonLabel: "Termin anfrage",

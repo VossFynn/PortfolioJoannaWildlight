@@ -118,7 +118,7 @@ export default async function HomePage() {
                   imageKey={card.imageKey}
                   tone="card"
                   labelSize="sm"
-                  className="h-[330px] rounded-t-[var(--jw-radius-arch-sm)] rounded-b-card md:h-[360px] md:rounded-t-[var(--jw-radius-arch-card)]"
+                  className="aspect-[3/4] rounded-t-[var(--jw-radius-arch-sm)] rounded-b-card md:aspect-auto md:h-[360px] md:rounded-t-[var(--jw-radius-arch-card)]"
                 />
                 <div className="px-5.5 pt-5.5 md:px-7 md:pt-7">
                   <div className="font-display text-[25px] md:text-[28px]">{card.title}</div>
@@ -152,7 +152,7 @@ export default async function HomePage() {
               <PlaceholderImage
                 imageKey={key}
                 labelSize="sm"
-                className="h-[230px] md:h-[400px]"
+                className="aspect-[3/4] md:aspect-auto md:h-[400px]"
               />
             </ScrollReveal>
           ))}

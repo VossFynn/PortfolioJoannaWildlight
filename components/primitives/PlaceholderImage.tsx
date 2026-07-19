@@ -48,14 +48,29 @@ export function PlaceholderImage({
     return (
       <>
         <div className={`relative overflow-hidden ${className}`}>
-          <Image
-            src={withBasePath(asset.src)}
-            alt={asset.alt}
-            fill
-            className="object-cover"
-            sizes={sizes}
-            priority={priority}
-          />
+          {asset.srcMobile ? (
+            /* Art-Direction: kleinere Datei für Mobile-Viewports — next/image
+               kann im unoptimized-Export kein <picture>, daher natives img. */
+            <picture>
+              <source media="(max-width: 767px)" srcSet={withBasePath(asset.srcMobile)} />
+              <img
+                src={withBasePath(asset.src)}
+                alt={asset.alt}
+                className="absolute inset-0 h-full w-full object-cover"
+                loading={priority ? "eager" : "lazy"}
+                fetchPriority={priority ? "high" : undefined}
+              />
+            </picture>
+          ) : (
+            <Image
+              src={withBasePath(asset.src)}
+              alt={asset.alt}
+              fill
+              className="object-cover"
+              sizes={sizes}
+              priority={priority}
+            />
+          )}
           {expandable && (
             <button
               ref={triggerRef}

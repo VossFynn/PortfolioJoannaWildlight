@@ -7,7 +7,17 @@ export const about: AboutContent = {
       "Hey, ich bin Joanna. Mama von zwei wundervollen Kindern und Fotografin mit ganzem Herzen. Echte Momente für Familien, die fühlen wollen, nicht posieren.",
   },
   headline: "Echte Momente für Familien, die *fühlen* wollen, nicht posieren.",
-  marqueeItems: ["ehrlich", "natürlich", "nah", "voller Gefühl"],
+  marqueeItems: [
+    "ehrlich",
+    "natürlich",
+    "nah",
+    "voller Gefühl",
+    "ungestellt",
+    "warm",
+    "lebendig",
+    "golden hour",
+    "echte Momente",
+  ],
   intro: {
     portraitKey: "portrait-joanna-kamera",
     headline: "Hey, ich bin Joanna.",

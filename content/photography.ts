@@ -14,6 +14,9 @@ export const photography: PhotographyContent = {
     "Newborn",
     "Mensch & Tier",
     "Hochzeiten",
+    "golden hour",
+    "echte Momente",
+    "ungestellt",
   ],
   cta: {
     headline: "Lasst uns eure *Geschichte* festhalten",

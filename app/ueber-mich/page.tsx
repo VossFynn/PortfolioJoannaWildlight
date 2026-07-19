@@ -34,7 +34,7 @@ export default async function AboutPage() {
         <ArchImage
           imageKey={about.intro.portraitKey}
           size="portrait"
-          className="mx-auto h-[360px] max-w-[300px] md:mx-0 md:h-[580px] md:max-w-none"
+          className="mx-auto aspect-[3/4] max-w-[300px] md:mx-0 md:aspect-auto md:h-[580px] md:max-w-none"
           priority
         />
         <div>
@@ -72,7 +72,7 @@ export default async function AboutPage() {
           <PlaceholderImage
             imageKey={about.passion.imageKey}
             tone="greige"
-            className="mt-10 h-[400px] -rotate-[1.5deg] shadow-tilt md:mt-0 md:h-[500px] md:rotate-[1.5deg]"
+            className="mt-10 aspect-[3/4] -rotate-[1.5deg] shadow-tilt md:mt-0 md:aspect-auto md:h-[500px] md:rotate-[1.5deg]"
           />
         </div>
       </section>

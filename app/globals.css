@@ -115,23 +115,31 @@
 
 /* Sanftes Scrollen + dezentes Einrasten an Sektionsanfängen.
    `proximity` rastet nur ein, wenn eine Sektionskante nah ist —
-   freies Scrollen (auch durch lange Sektionen) bleibt möglich. */
+   freies Scrollen (auch durch lange Sektionen) bleibt möglich.
+   Snap NUR auf Desktop mit Maus (pointer: fine): auf Touch-Geräten
+   (iOS Safari) kämpft Snap gegen das Momentum-Scrolling und macht
+   das Scrollen ruckelig/sprunghaft. */
 html {
-  scroll-snap-type: y proximity;
   scroll-padding-top: 64px; /* Sticky-Header (Mobile) */
+  -webkit-tap-highlight-color: transparent;
 }
 @media (min-width: 768px) {
   html {
     scroll-padding-top: 88px; /* Sticky-Header (Desktop) */
   }
 }
+@media (min-width: 768px) and (pointer: fine) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  main > section {
+    scroll-snap-align: start;
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
-}
-main > section {
-  scroll-snap-align: start;
 }
 
 /* Sichtbare Focus-States (a11y) */

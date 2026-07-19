@@ -38,7 +38,7 @@ export default async function PhotographyPage() {
           <CategoryCarousel
             imageKeys={cat.imageKeys}
             tone={alt ? "greige" : "ivory"}
-            className={`h-[440px] md:h-[620px] md:shadow-tilt ${alt ? "md:rotate-[1deg]" : "md:-rotate-[1deg]"}`}
+            className={`aspect-[3/4] md:aspect-auto md:h-[620px] md:shadow-tilt ${alt ? "md:rotate-[1deg]" : "md:-rotate-[1deg]"}`}
             priority={i === 0}
           />
         );

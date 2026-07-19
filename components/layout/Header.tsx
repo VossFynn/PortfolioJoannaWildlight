@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import { withBasePath } from "@/lib/basePath";
 import type { NavItem } from "@/lib/content/types";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 
 interface HeaderProps {
   logo: { top: string; bottom: string };
@@ -21,15 +22,15 @@ export function Header({ logo, nav }: HeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  // Solange der Drawer offen ist, Seiten-Scroll sperren; Escape schließt.
+  // Solange der Drawer offen ist, Seiten-Scroll sperren (iOS-sicher); Escape schließt.
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (open) lockScroll();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = "";
+      if (open) unlockScroll();
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);

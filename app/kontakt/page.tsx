@@ -40,7 +40,7 @@ export default async function ContactPage() {
           <ArchImage
             imageKey={contact.side.portraitKey}
             size="portrait"
-            className="mx-auto h-[420px] max-w-[300px] md:mx-0 md:h-[520px] md:max-w-none"
+            className="mx-auto aspect-[3/4] max-w-[300px] md:mx-0 md:aspect-auto md:h-[520px] md:max-w-none"
           />
           <StickerBadge className="absolute bottom-7 left-1/2 -translate-x-1/2">
             {contact.side.stickerLabel}
