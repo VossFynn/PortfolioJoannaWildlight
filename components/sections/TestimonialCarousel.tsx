@@ -9,16 +9,32 @@ const AUTO_ROTATE_MS = 6000;
 const arrowClass =
   "flex h-12 w-12 shrink-0 items-center justify-center rounded-pill border border-text-muted text-lg text-text-tertiary transition-colors hover:border-gold hover:text-gold-dark md:h-13 md:w-13 md:text-xl";
 
-function Dots({ count, active }: { count: number; active: number }) {
+function Dots({
+  count,
+  active,
+  onSelect,
+}: {
+  count: number;
+  active: number;
+  onSelect: (i: number) => void;
+}) {
   return (
-    <div aria-hidden className="flex gap-2 md:gap-2.5">
+    <div className="flex gap-0.5 md:gap-1">
       {Array.from({ length: count }, (_, i) => (
-        <span
+        <button
           key={i}
-          className={`h-2 w-2 rounded-pill transition-colors duration-300 ${
-            i === active ? "bg-gold" : "bg-dot-inactive"
-          }`}
-        />
+          type="button"
+          onClick={() => onSelect(i)}
+          aria-label={`Zitat ${i + 1} von ${count} anzeigen`}
+          aria-current={i === active}
+          className="flex h-7 w-7 items-center justify-center"
+        >
+          <span
+            className={`h-2 w-2 rounded-pill transition-colors duration-300 ${
+              i === active ? "bg-gold" : "bg-dot-inactive hover:bg-gold-light"
+            }`}
+          />
+        </button>
       ))}
     </div>
   );
@@ -56,6 +72,11 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
     startAutoRotate();
   };
 
+  const select = (i: number) => {
+    setIndex(i);
+    startAutoRotate();
+  };
+
   const current = testimonials[index];
 
   const card = (
@@ -88,7 +109,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
         </button>
       </div>
       <div className="mt-8 hidden justify-center md:flex">
-        <Dots count={testimonials.length} active={index} />
+        <Dots count={testimonials.length} active={index} onSelect={select} />
       </div>
 
       {/* Mobile: Pfeile + Dots unter der Karte */}
@@ -98,7 +119,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
           <button type="button" onClick={() => go(-1)} className={arrowClass} aria-label="Vorheriges Zitat">
             ←
           </button>
-          <Dots count={testimonials.length} active={index} />
+          <Dots count={testimonials.length} active={index} onSelect={select} />
           <button type="button" onClick={() => go(1)} className={arrowClass} aria-label="Nächstes Zitat">
             →
           </button>

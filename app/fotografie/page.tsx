@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 import { Accent } from "@/components/primitives/Accent";
 import { Marquee } from "@/components/primitives/Marquee";
-import { PlaceholderImage } from "@/components/primitives/PlaceholderImage";
 import { ScrollReveal } from "@/components/primitives/ScrollReveal";
 import { SectionDivider } from "@/components/primitives/SectionDivider";
+import { CategoryCarousel } from "@/components/sections/CategoryCarousel";
 import { CTABand } from "@/components/sections/CTABand";
 import { getContentProvider } from "@/lib/content/provider";
 
@@ -35,8 +35,8 @@ export default async function PhotographyPage() {
       {categories.map((cat, i) => {
         const alt = i % 2 === 1;
         const image = (
-          <PlaceholderImage
-            imageKey={cat.imageKey}
+          <CategoryCarousel
+            imageKeys={cat.imageKeys}
             tone={alt ? "greige" : "ivory"}
             className={`h-[440px] md:h-[620px] md:shadow-tilt ${alt ? "md:rotate-[1deg]" : "md:-rotate-[1deg]"}`}
             priority={i === 0}

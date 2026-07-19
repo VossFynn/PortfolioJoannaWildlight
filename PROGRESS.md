@@ -1,10 +1,10 @@
 # PROGRESS — Joanna Wildlight Portfolio
 
 ## Stand
-- Zuletzt erledigt: Echte Fotos eingepflegt (public/images/, Manifest gefüllt, Hero = 2 Slides), Logo im Header (public/images/logo.png), GitHub-Pages-Deployment vorbereitet (output: "export", basePath via NEXT_PUBLIC_BASE_PATH, .github/workflows/deploy.yml; Kontakt-Submit von Server Action nach lib/contact/submit.ts verschoben — Server Actions gehen nicht im statischen Export)
-- In Arbeit / Als Nächstes: Pages im Repo aktivieren (Settings → Pages → Source: GitHub Actions) + push; offen bleiben Inhalts-TODOs: 2 echte Testimonials, Mail-Service in lib/contact/submit.ts, Datenschutz/Impressum-Links im Footer (href="#")
-- Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). Achtung: `rtk next build` meldete einmal fälschlich Erfolg aus stalem Zustand — zur Verifikation `npx next build` direkt nutzen und Routen-Liste prüfen. Die vom User gelieferten Bilddateien waren AVIF mit falscher Endung → per sips zu echten JPEG/PNG konvertiert.
-- Aktualisiert: Session 3, 2026-07-19
+- Zuletzt erledigt (Session 4): Intro-Collage-Bug behoben (ArchImage bekam `absolute` in die intern `relative` Fläche — `.relative` gewinnt in der CSS-Reihenfolge, Bogen-Portrait kollabierte auf 0px; jetzt Wrapper-Div positioniert). Marquee: mehr Wörter + selbstskalierende Wiederholung/Dauer (Leerraum auf breiten Viewports behoben). Fotografie: CategoryCarousel je Sektion (Crossfade, klickbare Dots) + Lightbox (Klick vergrößert, Esc/Klick schließt); Manifest um kat-*-2/3-Slides ergänzt, PhotoCategory.imageKey → imageKeys[]. Hero-/Testimonial-Dots jetzt klickbare Buttons. Scroll: smooth + scroll-snap y proximity auf Sektionsanfänge (scroll-padding = Headerhöhe). Logo-PNG randlos beschnitten (war 283×129 mit Wortmark nur 147×57) und 2x gespeichert → wirkt im Header design-groß ohne Header-Vergrößerung.
+- In Arbeit / Als Nächstes: Pages im Repo aktivieren (Settings → Pages → Source: GitHub Actions) + push; offen bleiben Inhalts-TODOs: 2 echte Testimonials, Mail-Service in lib/contact/submit.ts, Datenschutz/Impressum-Links im Footer (href="#"); Logo-Quelle ist nur 155×65 — für gestochen scharfes Retina wäre ein höher aufgelöster Export gut.
+- Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). Achtung: `rtk next build` meldete einmal fälschlich Erfolg aus stalem Zustand — zur Verifikation `npx next build` direkt nutzen und Routen-Liste prüfen. Die vom User gelieferten Bilddateien waren AVIF mit falscher Endung → per sips zu echten JPEG/PNG konvertiert. WICHTIG: PlaceholderImage/ArchImage nie `absolute` in className geben (Position-Konflikt) — Wrapper verwenden.
+- Aktualisiert: Session 4, 2026-07-19
 
 ---
 

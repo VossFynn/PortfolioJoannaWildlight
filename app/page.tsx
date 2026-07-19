@@ -61,12 +61,15 @@ export default async function HomePage() {
           {/* Collage */}
           <div className="relative mt-8 h-[430px] md:mt-0 md:h-[580px]">
             <SunCircle className="absolute -right-12 -top-14 h-[190px] w-[190px] md:-right-10 md:-top-9 md:h-[230px] md:w-[230px]" />
-            <ArchImage
-              imageKey={home.intro.portraitKey}
-              size="portrait"
-              className="absolute inset-y-0 left-0 right-14 md:right-16"
-              priority
-            />
+            {/* Wrapper positioniert; ArchImage selbst bleibt position:relative (fill-Image) */}
+            <div className="absolute inset-y-0 left-0 right-14 md:right-16">
+              <ArchImage
+                imageKey={home.intro.portraitKey}
+                size="portrait"
+                className="h-full w-full"
+                priority
+              />
+            </div>
             <Polaroid
               imageKey={home.intro.polaroidKey}
               rotate={5}

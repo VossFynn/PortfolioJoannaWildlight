@@ -113,6 +113,27 @@
    Desktop: H1 50–52px w500 · H2 38–44px w500 · Body 17–18px lh1.8 · Nav 15px ls .04em
    Mobile:  H1 32–40px · H2 27–32px · Body 16px lh1.75 */
 
+/* Sanftes Scrollen + dezentes Einrasten an Sektionsanfängen.
+   `proximity` rastet nur ein, wenn eine Sektionskante nah ist —
+   freies Scrollen (auch durch lange Sektionen) bleibt möglich. */
+html {
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 64px; /* Sticky-Header (Mobile) */
+}
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 88px; /* Sticky-Header (Desktop) */
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+main > section {
+  scroll-snap-align: start;
+}
+
 /* Sichtbare Focus-States (a11y) */
 :focus-visible {
   outline: 2px solid var(--jw-gold);

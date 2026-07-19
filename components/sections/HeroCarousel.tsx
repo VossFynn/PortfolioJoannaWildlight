@@ -75,19 +75,24 @@ export function HeroCarousel({ slides, title, subtitle }: HeroCarouselProps) {
         </p>
       </div>
 
-      {/* Dezente Dots (bei reduced-motion steht das erste Bild — Dots ausblenden) */}
+      {/* Dezente Dots — Klick springt direkt zum Slide */}
       {slides.length > 1 && (
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-3 flex justify-center gap-2.5 motion-reduce:hidden md:bottom-6"
-        >
-          {slides.map((_, i) => (
-            <span
-              key={i}
-              className={`h-2 w-2 rounded-pill transition-colors duration-500 ${
-                i === index ? "bg-ivory/90" : "bg-ivory/40"
-              }`}
-            />
+        <div className="absolute inset-x-0 bottom-1.5 flex justify-center gap-1 md:bottom-4">
+          {slides.map((slide, i) => (
+            <button
+              key={slide.imageKey}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Bild ${i + 1} von ${slides.length} anzeigen`}
+              aria-current={i === index}
+              className="flex h-7 w-7 items-center justify-center"
+            >
+              <span
+                className={`h-2 w-2 rounded-pill transition-colors duration-500 ${
+                  i === index ? "bg-ivory/90" : "bg-ivory/40 hover:bg-ivory/70"
+                }`}
+              />
+            </button>
           ))}
         </div>
       )}

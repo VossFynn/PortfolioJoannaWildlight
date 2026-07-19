@@ -37,12 +37,19 @@ export const imageManifest = {
   "portrait-joanna-kamera": { src: "/images/joanna-kamera.jpg", label: "portrait joanna mit kamera · hochformat", alt: "Joanna mit Kamera in der Natur im Gegenlicht", glowX: 65 },
   "shooting-natur": { src: "/images/joanna-hunde.jpg", label: "shooting in der natur · hochformat", alt: "Schwarz-weiß: Frau mit Blumenkranz und zwei Hunden im Wald", glowX: 45 },
 
-  /* Fotografie — Kategorien */
+  /* Fotografie — Kategorie-Karussells (je Kategorie 1–n Slides) */
   "kat-familie": { src: "/images/familie-wald.jpg", label: "familie · hochformat", alt: "Mutter tobt mit ihren zwei Kindern auf einer Decke im Wald", glowX: 60 },
+  "kat-familie-2": { src: "/images/mutter-tochter.jpg", label: "familie 2 · hochformat", alt: "Mutter umarmt ihre Tochter auf einer sonnigen Wiese", glowX: 60 },
+  "kat-familie-3": { src: "/images/hero-familie.jpg", label: "familie 3 · querformat", alt: "Schwarz-weißes Familienfoto: Eltern und Kinder halten die neugeborenen Zwillinge", glowX: 50 },
   "kat-paar": { src: "/images/paar-umarmung.jpg", label: "paar · hochformat", alt: "Paar umarmt sich innig auf einer Landstraße", glowX: 40 },
+  "kat-paar-2": { src: "/images/paar-heide.jpg", label: "paar 2 · hochformat", alt: "Paar sitzt lachend zusammen in der Heide", glowX: 40 },
   "kat-babybauch": { src: "/images/babybauch-strand.jpg", label: "babybauch · hochformat", alt: "Schwangeres Paar liegt aneinandergelehnt im Sand", glowX: 65 },
   "kat-newborn": { src: "/images/mutter-baby-herbst.jpg", label: "newborn · hochformat", alt: "Mutter hält ihr lachendes Baby mit Bommelmütze im Herbst", glowX: 50 },
+  "kat-newborn-2": { src: "/images/hero-mutter-baby.jpg", label: "newborn 2 · querformat", alt: "Mutter kuschelt mit ihrem Baby in weißen Strickmützen", glowX: 40 },
+  "kat-newborn-3": { src: "/images/mutter-baby-sonnenblumen.jpg", label: "newborn 3 · hochformat", alt: "Mutter hält ihr Baby im Sonnenblumenfeld", glowX: 50 },
   "kat-mensch-tier": { src: "/images/frau-hund-schnee.jpg", label: "mensch & tier · hochformat", alt: "Frau kuschelt im Schnee mit ihrem Golden Retriever", glowX: 55 },
+  "kat-mensch-tier-2": { src: "/images/kind-hund.jpg", label: "mensch & tier 2 · hochformat", alt: "Schwarz-weiß: Mädchen schmiegt sich an einen Australian Shepherd", glowX: 30 },
+  "kat-mensch-tier-3": { src: "/images/joanna-hunde.jpg", label: "mensch & tier 3 · hochformat", alt: "Schwarz-weiß: Frau mit Blumenkranz und zwei Hunden im Wald", glowX: 45 },
   "kat-hochzeit": { src: "/images/hochzeit-paar.jpg", label: "hochzeit · hochformat", alt: "Brautpaar mit wehendem Schleier unter Bäumen", glowX: 45 },
 
   /* Kontakt */

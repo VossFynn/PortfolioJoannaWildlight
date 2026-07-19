@@ -28,7 +28,17 @@ export const home: HomeContent = {
     polaroidKey: "detail-foto",
     stickerLabel: "★ 5,0 bei Google",
   },
-  marqueeItems: ["ehrlich", "natürlich", "nah", "voller Gefühl"],
+  marqueeItems: [
+    "ehrlich",
+    "natürlich",
+    "nah",
+    "voller Gefühl",
+    "ungestellt",
+    "warm",
+    "lebendig",
+    "golden hour",
+    "echte Momente",
+  ],
   services: {
     headline: "Was ich für euch *festhalte*",
     subline: "Ehrlich, natürlich und voller Gefühl.",

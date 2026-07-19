@@ -5,7 +5,11 @@ import { getImage } from "@/lib/images/manifest";
 
 interface PlaceholderImageProps {
   imageKey: string;
-  /** Größe/Radius/Rotation kommen vom Aufrufer (absolute/relative Fläche). */
+  /**
+   * Größe/Radius/Rotation kommen vom Aufrufer. Kein `absolute` übergeben —
+   * die Fläche ist intern position:relative (next/image fill); zum
+   * Positionieren einen Wrapper mit fester Höhe verwenden.
+   */
   className?: string;
   /** Streifen-Variante passend zum umgebenden Hintergrund. */
   tone?: "ivory" | "greige" | "card";

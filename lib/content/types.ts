@@ -42,7 +42,8 @@ export interface PhotoCategory {
   eyebrow: string;
   headline: string;
   text: string;
-  imageKey: string;
+  /** Slides des Kategorie-Karussells; bei nur einem Key gibt es keine Dots. */
+  imageKeys: string[];
 }
 
 export type ContactSource = string;

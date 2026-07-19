@@ -36,11 +36,13 @@ export function Header({ logo, nav }: HeaderProps) {
 
   const logoBlock = (
     <Link href="/" aria-label={`${logo.top} ${logo.bottom} — Startseite`}>
+      {/* PNG ist randlos aufs Wortmark beschnitten (2x für Retina) —
+          Höhe entspricht der Logo-Größe aus dem Design (Mobile ~34px, Desktop ~48px) */}
       <Image
         src={withBasePath("/images/logo.png")}
         alt={`${logo.top} ${logo.bottom}`}
-        width={283}
-        height={129}
+        width={310}
+        height={130}
         priority
         className="h-9 w-auto md:h-12"
       />
