@@ -1,9 +1,8 @@
 import type { HeroImage, HomeContent } from "@/lib/content/types";
 
 export const heroImages: HeroImage[] = [
-  { imageKey: "home-hero-1", alt: "Familienfoto zur golden hour" },
-  { imageKey: "home-hero-2", alt: "Familienfoto zur golden hour" },
-  { imageKey: "home-hero-3", alt: "Familienfoto zur golden hour" },
+  { imageKey: "home-hero-1", alt: "Schwarz-weißes Familienfoto: Eltern und Kinder halten die neugeborenen Zwillinge" },
+  { imageKey: "home-hero-2", alt: "Mutter kuschelt mit ihrem Baby in weißen Strickmützen" },
 ];
 
 export const home: HomeContent = {

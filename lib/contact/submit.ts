@@ -1,5 +1,3 @@
-"use server";
-
 export interface ContactRequest {
   name: string;
   email: string;
@@ -15,12 +13,14 @@ export interface ContactResult {
 }
 
 /**
- * Austauschbarer Submit-Stub. TODO: an Mail-Service anbinden
- * (z. B. Resend/Nodemailer oder CMS-Form-Endpoint) — Signatur beibehalten,
- * dann muss das Formular nicht angefasst werden.
+ * Austauschbarer Submit-Stub, läuft clientseitig (statischer Export für
+ * GitHub Pages — Server Actions stehen dort nicht zur Verfügung).
+ * TODO: an Mail-Service anbinden (z. B. Formspree/Resend-API oder
+ * CMS-Form-Endpoint per fetch) — Signatur beibehalten, dann muss das
+ * Formular nicht angefasst werden.
  */
 export async function submitContactRequest(data: ContactRequest): Promise<ContactResult> {
-  // Server-seitige Minimal-Validierung (Client validiert bereits ausführlich).
+  // Minimal-Validierung (das Formular validiert bereits ausführlich).
   if (!data.name.trim() || !data.email.trim() || !data.occasion.trim() || !data.message.trim()) {
     return { ok: false, error: "Bitte fülle alle Pflichtfelder aus." };
   }

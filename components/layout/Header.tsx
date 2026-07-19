@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { withBasePath } from "@/lib/basePath";
 import type { NavItem } from "@/lib/content/types";
 
 interface HeaderProps {
@@ -33,13 +35,15 @@ export function Header({ logo, nav }: HeaderProps) {
   }, [open]);
 
   const logoBlock = (
-    <Link href="/" className="text-center" aria-label={`${logo.top} ${logo.bottom} — Startseite`}>
-      <div className="font-display text-xl md:text-[26px] tracking-[0.26em] md:tracking-[0.28em] text-ink">
-        {logo.top}
-      </div>
-      <div className="text-[7px] md:text-[9px] tracking-[0.5em] text-text-muted md:mt-0.5">
-        {logo.bottom}
-      </div>
+    <Link href="/" aria-label={`${logo.top} ${logo.bottom} — Startseite`}>
+      <Image
+        src={withBasePath("/images/logo.png")}
+        alt={`${logo.top} ${logo.bottom}`}
+        width={283}
+        height={129}
+        priority
+        className="h-9 w-auto md:h-12"
+      />
     </Link>
   );
 

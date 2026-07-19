@@ -1,10 +1,10 @@
 # PROGRESS — Joanna Wildlight Portfolio
 
 ## Stand
-- Zuletzt erledigt: ALLE PHASEN (0–9) abgeschlossen — Build/Lint/Typecheck sauber, alle 5 Routen prerendered, PROJECT_README.md geschrieben
-- In Arbeit / Als Nächstes: — (fertig; offen bleiben nur Inhalts-TODOs: echte Fotos ins Manifest, 2 echte Testimonials, Mail-Service in app/kontakt/actions.ts)
-- Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). Achtung: `rtk next build` meldete einmal fälschlich Erfolg aus stalem Zustand — zur Verifikation `npx next build` direkt nutzen und Routen-Liste prüfen.
-- Aktualisiert: Session 2, 2026-07-18
+- Zuletzt erledigt: Echte Fotos eingepflegt (public/images/, Manifest gefüllt, Hero = 2 Slides), Logo im Header (public/images/logo.png), GitHub-Pages-Deployment vorbereitet (output: "export", basePath via NEXT_PUBLIC_BASE_PATH, .github/workflows/deploy.yml; Kontakt-Submit von Server Action nach lib/contact/submit.ts verschoben — Server Actions gehen nicht im statischen Export)
+- In Arbeit / Als Nächstes: Pages im Repo aktivieren (Settings → Pages → Source: GitHub Actions) + push; offen bleiben Inhalts-TODOs: 2 echte Testimonials, Mail-Service in lib/contact/submit.ts, Datenschutz/Impressum-Links im Footer (href="#")
+- Blocker/Notizen: Tailwind v4 → Theme-Mapping in globals.css via @theme inline (kein tailwind.config). Achtung: `rtk next build` meldete einmal fälschlich Erfolg aus stalem Zustand — zur Verifikation `npx next build` direkt nutzen und Routen-Liste prüfen. Die vom User gelieferten Bilddateien waren AVIF mit falscher Endung → per sips zu echten JPEG/PNG konvertiert.
+- Aktualisiert: Session 3, 2026-07-19
 
 ---
 

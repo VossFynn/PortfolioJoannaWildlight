@@ -1,8 +1,8 @@
 /**
  * Bild-Manifest: semantischer Key → Asset.
- * src ist heute überall null (Platzhalter). Echte Fotos einbinden:
- * Datei nach public/images/ legen und src auf "/images/<datei>" setzen —
- * die Placeholder-Komponente rendert dann automatisch next/image ohne Glow.
+ * Fotos austauschen: Datei nach public/images/ legen und src auf
+ * "/images/<datei>" setzen (src: null rendert wieder den gestreiften
+ * Platzhalter mit Monospace-Label und Glow).
  * label = Monospace-Beschriftung des Platzhalters (Motiv · Format, aus dem Design).
  */
 export interface ImageAsset {
@@ -15,39 +15,38 @@ export interface ImageAsset {
 
 export const imageManifest = {
   /* Startseite — Hero-Carousel (Slides frei erweiterbar) */
-  "home-hero-1": { src: null, label: "familienfoto · querformat / golden hour", alt: "Familienfoto zur golden hour", glowX: 78 },
-  "home-hero-2": { src: null, label: "familienfoto 2 · querformat / golden hour", alt: "Familienfoto zur golden hour", glowX: 40 },
-  "home-hero-3": { src: null, label: "familienfoto 3 · querformat / golden hour", alt: "Familienfoto zur golden hour", glowX: 60 },
+  "home-hero-1": { src: "/images/hero-familie.jpg", label: "familienfoto · querformat / golden hour", alt: "Schwarz-weißes Familienfoto: Eltern und Kinder halten die neugeborenen Zwillinge", glowX: 78 },
+  "home-hero-2": { src: "/images/hero-mutter-baby.jpg", label: "familienfoto 2 · querformat / golden hour", alt: "Mutter kuschelt mit ihrem Baby in weißen Strickmützen", glowX: 40 },
 
   /* Startseite — Intro-Collage */
-  "portrait-joanna": { src: null, label: "portrait joanna · hochformat", alt: "Portrait von Joanna", glowX: 70 },
-  "detail-foto": { src: null, label: "detail-foto", alt: "Detailfoto", glowX: 40 },
+  "portrait-joanna": { src: "/images/joanna-portrait.jpg", label: "portrait joanna · hochformat", alt: "Portrait von Joanna mit Hut im goldenen Abendlicht", glowX: 70 },
+  "detail-foto": { src: "/images/mutter-kind-kuerbis.jpg", label: "detail-foto", alt: "Mutter küsst ihr Kind auf einer Picknickdecke zwischen Kürbissen", glowX: 40 },
 
   /* Startseite — "Was ich festhalte"-Karten */
-  "card-familie": { src: null, label: "familie · hochformat", alt: "Familienshooting", glowX: 60 },
-  "card-paar": { src: null, label: "paar · hochformat", alt: "Paarshooting", glowX: 40 },
-  "card-babybauch": { src: null, label: "babybauch · hochformat", alt: "Babybauchshooting", glowX: 70 },
+  "card-familie": { src: "/images/mutter-tochter.jpg", label: "familie · hochformat", alt: "Mutter umarmt ihre Tochter auf einer sonnigen Wiese", glowX: 60 },
+  "card-paar": { src: "/images/paar-heide.jpg", label: "paar · hochformat", alt: "Paar sitzt lachend zusammen in der Heide", glowX: 40 },
+  "card-babybauch": { src: "/images/babybauch-strand.jpg", label: "babybauch · hochformat", alt: "Schwangeres Paar liegt aneinandergelehnt im Sand", glowX: 70 },
 
   /* Startseite — "Kleine Werke"-Grid */
-  "werk-1": { src: null, label: "foto 1", alt: "Ausgewähltes Foto 1", glowX: 50 },
-  "werk-2": { src: null, label: "foto 2", alt: "Ausgewähltes Foto 2", glowX: 30 },
-  "werk-3": { src: null, label: "foto 3", alt: "Ausgewähltes Foto 3", glowX: 65 },
-  "werk-4": { src: null, label: "foto 4", alt: "Ausgewähltes Foto 4", glowX: 45 },
+  "werk-1": { src: "/images/mutter-baby-sonnenblumen.jpg", label: "foto 1", alt: "Mutter hält ihr Baby im Sonnenblumenfeld", glowX: 50 },
+  "werk-2": { src: "/images/kind-hund.jpg", label: "foto 2", alt: "Schwarz-weiß: Mädchen schmiegt sich an einen Australian Shepherd", glowX: 30 },
+  "werk-3": { src: "/images/hochzeit-paar.jpg", label: "foto 3", alt: "Brautpaar mit wehendem Schleier unter Bäumen", glowX: 65 },
+  "werk-4": { src: "/images/mutter-baby-herbst.jpg", label: "foto 4", alt: "Mutter hält ihr lachendes Baby mit Bommelmütze im Herbst", glowX: 45 },
 
   /* Über mich */
-  "portrait-joanna-kamera": { src: null, label: "portrait joanna mit kamera · hochformat", alt: "Joanna mit Kamera", glowX: 65 },
-  "shooting-natur": { src: null, label: "shooting in der natur · hochformat", alt: "Shooting in der Natur", glowX: 45 },
+  "portrait-joanna-kamera": { src: "/images/joanna-kamera.jpg", label: "portrait joanna mit kamera · hochformat", alt: "Joanna mit Kamera in der Natur im Gegenlicht", glowX: 65 },
+  "shooting-natur": { src: "/images/joanna-hunde.jpg", label: "shooting in der natur · hochformat", alt: "Schwarz-weiß: Frau mit Blumenkranz und zwei Hunden im Wald", glowX: 45 },
 
   /* Fotografie — Kategorien */
-  "kat-familie": { src: null, label: "familie · hochformat", alt: "Familienfotografie", glowX: 60 },
-  "kat-paar": { src: null, label: "paar · hochformat", alt: "Paarfotografie", glowX: 40 },
-  "kat-babybauch": { src: null, label: "babybauch · hochformat", alt: "Babybauchfotografie", glowX: 65 },
-  "kat-newborn": { src: null, label: "newborn · hochformat", alt: "Newborn-Fotografie", glowX: 50 },
-  "kat-mensch-tier": { src: null, label: "mensch & tier · hochformat", alt: "Mensch-und-Tier-Fotografie", glowX: 55 },
-  "kat-hochzeit": { src: null, label: "hochzeit · hochformat", alt: "Hochzeitsfotografie", glowX: 45 },
+  "kat-familie": { src: "/images/familie-wald.jpg", label: "familie · hochformat", alt: "Mutter tobt mit ihren zwei Kindern auf einer Decke im Wald", glowX: 60 },
+  "kat-paar": { src: "/images/paar-umarmung.jpg", label: "paar · hochformat", alt: "Paar umarmt sich innig auf einer Landstraße", glowX: 40 },
+  "kat-babybauch": { src: "/images/babybauch-strand.jpg", label: "babybauch · hochformat", alt: "Schwangeres Paar liegt aneinandergelehnt im Sand", glowX: 65 },
+  "kat-newborn": { src: "/images/mutter-baby-herbst.jpg", label: "newborn · hochformat", alt: "Mutter hält ihr lachendes Baby mit Bommelmütze im Herbst", glowX: 50 },
+  "kat-mensch-tier": { src: "/images/frau-hund-schnee.jpg", label: "mensch & tier · hochformat", alt: "Frau kuschelt im Schnee mit ihrem Golden Retriever", glowX: 55 },
+  "kat-hochzeit": { src: "/images/hochzeit-paar.jpg", label: "hochzeit · hochformat", alt: "Brautpaar mit wehendem Schleier unter Bäumen", glowX: 45 },
 
   /* Kontakt */
-  "portrait-joanna-kontakt": { src: null, label: "portrait joanna · hochformat", alt: "Portrait von Joanna", glowX: 65 },
+  "portrait-joanna-kontakt": { src: "/images/joanna-portrait.jpg", label: "portrait joanna · hochformat", alt: "Portrait von Joanna mit Hut im goldenen Abendlicht", glowX: 65 },
 } satisfies Record<string, ImageAsset>;
 
 export type ImageKey = keyof typeof imageManifest;

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { submitContactRequest } from "@/app/kontakt/actions";
+import { submitContactRequest } from "@/lib/contact/submit";
 import { Button } from "@/components/primitives/Button";
 import type { ContactContent } from "@/lib/content/types";
 

@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { withBasePath } from "@/lib/basePath";
 import { getImage } from "@/lib/images/manifest";
 
 interface PlaceholderImageProps {
@@ -33,7 +34,7 @@ export function PlaceholderImage({
     return (
       <div className={`relative overflow-hidden ${className}`}>
         <Image
-          src={asset.src}
+          src={withBasePath(asset.src)}
           alt={asset.alt}
           fill
           className="object-cover"
