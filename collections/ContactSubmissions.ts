@@ -1,5 +1,7 @@
 import type { CollectionConfig } from "payload";
 
+import { notifyOnContactSubmission } from "@/lib/contact/notify";
+
 /**
  * Eingänge des Kontaktformulars. Öffentlich nur `create` (das Formular sendet
  * ohne Login) — lesen/ändern/löschen ist Admins vorbehalten.
@@ -11,6 +13,9 @@ export const ContactSubmissions: CollectionConfig = {
     read: ({ req: { user } }) => Boolean(user),
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),
+  },
+  hooks: {
+    afterChange: [notifyOnContactSubmission],
   },
   admin: {
     useAsTitle: "name",

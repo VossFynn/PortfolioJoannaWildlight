@@ -1,5 +1,3 @@
-import type { ImpressumPage } from "@/payload-types";
-
 /**
  * Content-Typen der Website. Alle Texte/Bilder kommen aus Payload CMS via
  * PayloadContentProvider (lib/content/provider.ts).
@@ -171,11 +169,28 @@ export interface ContactContent {
   };
 }
 
-/** Impressum/Datenschutz — Rechtstext als Lexical-RichText-JSON. */
+/** Ein nummerierter Rechtstext-Abschnitt (Impressum/Datenschutz). */
+export interface LegalSection {
+  number: string;
+  title: string;
+  /** Jeder Absatz kann "\n" für Zeilenumbrüche enthalten (z. B. Adressblock). */
+  paragraphs: string[];
+  /** Optionale Aufzählung (z. B. Server-Log-Dateien). */
+  list: string[];
+  /** Optionale Chip-Liste (z. B. Rechte-Übersicht); letzter Eintrag wird hervorgehoben. */
+  pills: string[];
+}
+
+/** Impressum/Datenschutz. */
 export interface LegalPageContent {
   meta: PageMeta;
-  headline: string;
-  body: ImpressumPage["body"];
+  kicker: string;
+  headline: AccentedText;
+  subtitle: string;
+  badgeLabel: string;
+  marqueeItems: string[];
+  sections: LegalSection[];
+  note: { title: string; body: string };
 }
 
 export type PageContentMap = {

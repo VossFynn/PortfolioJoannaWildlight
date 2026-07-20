@@ -15,10 +15,10 @@ export interface ContactResult {
 /**
  * Sendet die Anfrage an Payloads REST-API (Collection contact-submissions,
  * öffentlicher `create`-Zugriff — siehe collections/ContactSubmissions.ts).
- * Einträge landen im Admin-Panel unter "Contact Submissions". Optionaler
- * E-Mail-Versand: RESEND_API_KEY setzen und @payloadcms/email-resend in
- * payload.config.ts einbinden (siehe PROJECT_README.md) — ohne Key läuft
- * alles wie hier, nur ohne Benachrichtigungsmail.
+ * Einträge landen im Admin-Panel unter "Contact Submissions". Optionale
+ * Benachrichtigungsmail an die in Site Settings → Notifications hinterlegte
+ * Adresse: RESEND_API_KEY setzen (siehe payload.config.ts, lib/contact/notify.ts)
+ * — ohne Key läuft alles wie hier, nur ohne Benachrichtigungsmail.
  */
 export async function submitContactRequest(data: ContactRequest): Promise<ContactResult> {
   if (!data.name.trim() || !data.email.trim() || !data.occasion.trim() || !data.message.trim()) {

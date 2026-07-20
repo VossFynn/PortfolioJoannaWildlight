@@ -15,7 +15,6 @@ export const site: SiteContent = {
     quote: "„Fotografie ist für mich das Festhalten von kleinen Wundern.“",
     links: [
       { label: "Datenschutz", href: "/datenschutz" },
-      { label: "Cookies", href: "/datenschutz" },
       { label: "Impressum", href: "/impressum" },
     ],
     copyright: "© 2026 Joanna Bartels | All rights Reserved",

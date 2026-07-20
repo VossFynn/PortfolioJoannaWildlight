@@ -2,6 +2,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { resendAdapter } from "@payloadcms/email-resend";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { buildConfig } from "payload";
@@ -49,6 +50,15 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
+  // Ohne RESEND_API_KEY bleibt email undefined — Kontaktanfragen landen dann nur
+  // im Admin-Panel, ohne Benachrichtigungsmail (siehe collections/ContactSubmissions.ts).
+  email: process.env.RESEND_API_KEY
+    ? resendAdapter({
+        defaultFromAddress: process.env.RESEND_FROM_ADDRESS ?? "onboarding@resend.dev",
+        defaultFromName: "Joanna Wildlight Fotografie",
+        apiKey: process.env.RESEND_API_KEY,
+      })
+    : undefined,
   db: postgresAdapter({
     pool: {
       connectionString: databaseUri,

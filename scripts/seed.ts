@@ -18,6 +18,7 @@ import { about } from "../content/about";
 import { contact } from "../content/contact";
 import { faqItems, faqPage } from "../content/faq";
 import { heroImages, home } from "../content/home";
+import { datenschutz, impressum } from "../content/legal";
 import { photoCategories, photography } from "../content/photography";
 import { site } from "../content/site";
 import { testimonials } from "../content/testimonials";
@@ -214,6 +215,26 @@ async function seed() {
       },
     },
   });
+
+  payload.logger.info("Befülle Impressum & Datenschutz …");
+  const legalSections = (content: typeof impressum) => ({
+    meta: content.meta,
+    kicker: content.kicker,
+    headline: content.headline,
+    subtitle: content.subtitle,
+    badgeLabel: content.badgeLabel,
+    marqueeItems: strings(content.marqueeItems),
+    sections: content.sections.map((s) => ({
+      number: s.number,
+      title: s.title,
+      paragraphs: strings(s.paragraphs),
+      list: strings(s.list ?? []),
+      pills: strings(s.pills ?? []),
+    })),
+    note: content.note,
+  });
+  await payload.updateGlobal({ slug: "impressum-page", data: legalSections(impressum) });
+  await payload.updateGlobal({ slug: "datenschutz-page", data: legalSections(datenschutz) });
 
   payload.logger.info("Fertig — Payload ist mit dem bisherigen Stand befüllt.");
 }

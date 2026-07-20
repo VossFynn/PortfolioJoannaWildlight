@@ -49,5 +49,24 @@ export const SiteSettings: GlobalConfig = {
         { name: "url", type: "text", required: true },
       ],
     },
+    {
+      name: "notifications",
+      type: "group",
+      fields: [
+        {
+          name: "contactEmail",
+          type: "email",
+          admin: {
+            description:
+              "Empfängt eine Benachrichtigung, sobald über das Kontaktformular eine neue Anfrage eingeht. Leer lassen, um Benachrichtigungen zu deaktivieren.",
+          },
+          // Not needed for the public site (nav/footer/etc.), so keep it out of the
+          // public global read (site-settings has `read: () => true` at the global level).
+          access: {
+            read: ({ req: { user } }) => Boolean(user),
+          },
+        },
+      ],
+    },
   ],
 };

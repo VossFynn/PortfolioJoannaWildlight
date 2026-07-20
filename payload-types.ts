@@ -515,6 +515,12 @@ export interface SiteSetting {
     handle: string;
     url: string;
   };
+  notifications?: {
+    /**
+     * Empfängt eine Benachrichtigung, sobald über das Kontaktformular eine neue Anfrage eingeht. Leer lassen, um Benachrichtigungen zu deaktivieren.
+     */
+    contactEmail?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -779,25 +785,48 @@ export interface ImpressumPage {
     title: string;
     description: string;
   };
-  headline: string;
+  kicker: string;
   /**
-   * TODO: echten Rechtstext eintragen (z. B. per e-recht24.de-Generator).
+   * Genau *einen* Teil in Sternchen setzen — wird kursiv/gold hervorgehoben.
    */
-  body?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  headline: string;
+  subtitle: string;
+  badgeLabel: string;
+  marqueeItems: {
+    text: string;
+    id?: string | null;
+  }[];
+  sections: {
+    number: string;
+    title: string;
+    paragraphs: {
+      text: string;
+      id?: string | null;
+    }[];
+    /**
+     * Optional: Aufzählung (z. B. Server-Log-Dateien).
+     */
+    list?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Optional: Chip-Liste (z. B. Rechte-Übersicht). Letzter Eintrag wird hervorgehoben.
+     */
+    pills?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  note: {
+    title: string;
+    body: string;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -811,25 +840,48 @@ export interface DatenschutzPage {
     title: string;
     description: string;
   };
-  headline: string;
+  kicker: string;
   /**
-   * TODO: echten Rechtstext eintragen (z. B. per e-recht24.de-Generator).
+   * Genau *einen* Teil in Sternchen setzen — wird kursiv/gold hervorgehoben.
    */
-  body?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  headline: string;
+  subtitle: string;
+  badgeLabel: string;
+  marqueeItems: {
+    text: string;
+    id?: string | null;
+  }[];
+  sections: {
+    number: string;
+    title: string;
+    paragraphs: {
+      text: string;
+      id?: string | null;
+    }[];
+    /**
+     * Optional: Aufzählung (z. B. Server-Log-Dateien).
+     */
+    list?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Optional: Chip-Liste (z. B. Rechte-Übersicht). Letzter Eintrag wird hervorgehoben.
+     */
+    pills?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  note: {
+    title: string;
+    body: string;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -872,6 +924,11 @@ export interface SiteSettingsSelect<T extends boolean = true> {
     | {
         handle?: T;
         url?: T;
+      };
+  notifications?:
+    | T
+    | {
+        contactEmail?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1156,8 +1213,47 @@ export interface ImpressumPageSelect<T extends boolean = true> {
         title?: T;
         description?: T;
       };
+  kicker?: T;
   headline?: T;
-  body?: T;
+  subtitle?: T;
+  badgeLabel?: T;
+  marqueeItems?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  sections?:
+    | T
+    | {
+        number?: T;
+        title?: T;
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        list?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        pills?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  note?:
+    | T
+    | {
+        title?: T;
+        body?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1173,8 +1269,47 @@ export interface DatenschutzPageSelect<T extends boolean = true> {
         title?: T;
         description?: T;
       };
+  kicker?: T;
   headline?: T;
-  body?: T;
+  subtitle?: T;
+  badgeLabel?: T;
+  marqueeItems?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  sections?:
+    | T
+    | {
+        number?: T;
+        title?: T;
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        list?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        pills?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  note?:
+    | T
+    | {
+        title?: T;
+        body?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

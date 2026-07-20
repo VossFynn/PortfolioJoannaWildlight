@@ -1,13 +1,14 @@
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import type { GlobalConfig } from "payload";
 
-import { metaField } from "./fields/shared";
+import {
+  accentedTextField,
+  legalNoteField,
+  legalSectionsField,
+  metaField,
+  stringListField,
+} from "./fields/shared";
 
-/**
- * Rechtlich in Deutschland verpflichtend (Impressumspflicht, §5 TMG). Der
- * Footer-Link existierte bisher als href="#" — hier nur das Gerüst, der
- * eigentliche Rechtstext muss von Joanna kommen (z. B. via e-recht24-Generator).
- */
+/** Rechtlich in Deutschland verpflichtend (Impressumspflicht, § 5 DDG). */
 export const ImpressumPage: GlobalConfig = {
   slug: "impressum-page",
   label: "Impressum",
@@ -16,14 +17,12 @@ export const ImpressumPage: GlobalConfig = {
   },
   fields: [
     metaField,
-    { name: "headline", type: "text", required: true, defaultValue: "Impressum" },
-    {
-      name: "body",
-      type: "richText",
-      editor: lexicalEditor(),
-      admin: {
-        description: "TODO: echten Rechtstext eintragen (z. B. per e-recht24.de-Generator).",
-      },
-    },
+    { name: "kicker", type: "text", required: true, defaultValue: "RECHTLICHES · § 5 DDG" },
+    accentedTextField("headline"),
+    { name: "subtitle", type: "textarea", required: true },
+    { name: "badgeLabel", type: "text", required: true },
+    stringListField("marqueeItems"),
+    legalSectionsField,
+    legalNoteField,
   ],
 };

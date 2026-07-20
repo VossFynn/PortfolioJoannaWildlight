@@ -49,6 +49,54 @@ export const stringListField = (name: string, description?: string): Field => ({
   fields: [{ name: "text", type: "text", required: true }],
 });
 
+/**
+ * Ein Rechtstext-Abschnitt (Impressum/Datenschutz): nummerierte Karte mit
+ * Titel, Absätzen (Konvention wie AccentedText: "\n" = Zeilenumbruch
+ * innerhalb eines Absatzes), optionaler Aufzählung und optionalen
+ * Chips (z. B. Rechte-Übersicht — letzter Eintrag wird im Frontend hervorgehoben).
+ */
+export const legalSectionsField: Field = {
+  name: "sections",
+  type: "array",
+  required: true,
+  minRows: 1,
+  fields: [
+    { name: "number", type: "text", required: true },
+    { name: "title", type: "text", required: true },
+    {
+      name: "paragraphs",
+      type: "array",
+      required: true,
+      minRows: 1,
+      fields: [{ name: "text", type: "textarea", required: true }],
+    },
+    {
+      name: "list",
+      type: "array",
+      admin: { description: "Optional: Aufzählung (z. B. Server-Log-Dateien)." },
+      fields: [{ name: "text", type: "text", required: true }],
+    },
+    {
+      name: "pills",
+      type: "array",
+      admin: {
+        description: "Optional: Chip-Liste (z. B. Rechte-Übersicht). Letzter Eintrag wird hervorgehoben.",
+      },
+      fields: [{ name: "text", type: "text", required: true }],
+    },
+  ],
+};
+
+/** Hervorgehobene Schluss-Notiz am Ende der Karten-Reihe ("Gut zu wissen"/"Kurz gesagt"). */
+export const legalNoteField: Field = {
+  name: "note",
+  type: "group",
+  fields: [
+    { name: "title", type: "text", required: true },
+    { name: "body", type: "textarea", required: true },
+  ],
+};
+
 interface ImageFieldOptions {
   required?: boolean;
   hasMany?: boolean;

@@ -132,6 +132,25 @@ export interface FaqPageContent {
   cta: CtaBandContent;
 }
 
+export interface LegalSection {
+  number: string;
+  title: string;
+  paragraphs: string[];
+  list?: string[];
+  pills?: string[];
+}
+
+export interface LegalPageContent {
+  meta: PageMeta;
+  kicker: string;
+  headline: AccentedText;
+  subtitle: string;
+  badgeLabel: string;
+  marqueeItems: string[];
+  sections: LegalSection[];
+  note: { title: string; body: string };
+}
+
 export interface ContactContent {
   meta: PageMeta;
   headline: AccentedText;
