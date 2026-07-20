@@ -76,7 +76,8 @@ export const home: HomeContent = {
     instagramTextBefore: "Folge mir gerne auf Instagram",
     googleStarsLine: "Vertrauen, das bleibt – 5,0 bei Google",
     reviewButtonLabel: "Erfahrungen teilen",
-    reviewUrl: "https://g.page/joannawildlight",
+    reviewUrl:
+      "https://www.google.com/maps/place/Joanna+Bartels+Fotografie/@51.175807,10.4541194,6z/data=!4m8!3m7!1s0x47b0d77c9994f3f3:0x29add5c816bcb88b!8m2!3d51.175807!4d10.4541194!9m1!1b1!16s%2Fg%2F11y8yx32_s?hl=de",
   },
   cta: {
     headline: "Lust auf *echte* Erinnerungen?",

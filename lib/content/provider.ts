@@ -234,20 +234,20 @@ class PayloadContentProvider implements ContentProvider {
         ? await payload.findGlobal({ slug: "impressum-page" })
         : await payload.findGlobal({ slug: "datenschutz-page" });
     return {
-      meta: p.meta,
-      kicker: p.kicker,
-      headline: p.headline,
-      subtitle: p.subtitle,
-      badgeLabel: p.badgeLabel,
+      meta: { title: p.meta?.title ?? "", description: p.meta?.description ?? "" },
+      kicker: p.kicker ?? "",
+      headline: p.headline ?? "",
+      subtitle: p.subtitle ?? "",
+      badgeLabel: p.badgeLabel ?? "",
       marqueeItems: textList(p.marqueeItems),
-      sections: p.sections.map((s) => ({
-        number: s.number,
-        title: s.title,
+      sections: (p.sections ?? []).map((s) => ({
+        number: s.number ?? "",
+        title: s.title ?? "",
         paragraphs: textList(s.paragraphs),
         list: textList(s.list),
         pills: textList(s.pills),
       })),
-      note: p.note,
+      note: { title: p.note?.title ?? "", body: p.note?.body ?? "" },
     };
   }
 }
