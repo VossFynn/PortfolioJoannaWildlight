@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { Accent } from "@/components/primitives/Accent";
-import { Marquee } from "@/components/primitives/Marquee";
 import { SectionDivider } from "@/components/primitives/SectionDivider";
 import { CTABand } from "@/components/sections/CTABand";
 import { FaqList } from "@/components/sections/FaqList";
@@ -31,9 +30,7 @@ export default async function FaqPage() {
         <SectionDivider className="mt-5.5 md:mt-7" />
       </section>
 
-      <Marquee items={faq.marqueeItems} className="mb-12 md:mb-22" />
-
-      <section className="px-6 pb-18 md:px-40 md:pb-30">
+      <section className="px-6 pb-18 pt-12 md:px-40 md:pb-30 md:pt-22">
         <FaqList items={items} />
       </section>
 

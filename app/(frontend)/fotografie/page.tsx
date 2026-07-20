@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { Accent } from "@/components/primitives/Accent";
-import { Marquee } from "@/components/primitives/Marquee";
 import { ScrollReveal } from "@/components/primitives/ScrollReveal";
 import { SectionDivider } from "@/components/primitives/SectionDivider";
 import { CategoryCarousel } from "@/components/sections/CategoryCarousel";
@@ -31,8 +30,6 @@ export default async function PhotographyPage() {
         </h1>
         <SectionDivider className="mt-5.5 md:mt-7" />
       </section>
-
-      <Marquee items={photography.marqueeItems} className="mb-14 md:mb-22" />
 
       {/* Kategorien alternierend: gerade = Bild links/Ivory, ungerade = Bild rechts/Greige */}
       {categories.map((cat, i) => {

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { Accent } from "@/components/primitives/Accent";
 import { ArchImage } from "@/components/primitives/ArchImage";
-import { Marquee } from "@/components/primitives/Marquee";
 import { PlaceholderImage } from "@/components/primitives/PlaceholderImage";
 import { ScrollReveal } from "@/components/primitives/ScrollReveal";
 import { SectionDivider } from "@/components/primitives/SectionDivider";
@@ -30,10 +29,8 @@ export default async function AboutPage() {
         <SectionDivider className="mt-5.5 md:mt-7" />
       </section>
 
-      <Marquee items={about.marqueeItems} className="mt-14 md:mt-18" />
-
       {/* Intro */}
-      <section className="items-center gap-24 px-6 py-14 md:grid md:grid-cols-[460px_1fr] md:px-30 md:pb-30 md:pt-22">
+      <section className="items-center gap-24 px-6 pb-14 pt-14 md:grid md:grid-cols-[460px_1fr] md:px-30 md:pb-30 md:pt-18">
         <ArchImage
           image={about.intro.portraitImage}
           size="portrait"
