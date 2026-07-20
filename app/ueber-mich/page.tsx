@@ -9,6 +9,9 @@ import { SectionDivider } from "@/components/primitives/SectionDivider";
 import { CTABand } from "@/components/sections/CTABand";
 import { getContentProvider } from "@/lib/content/provider";
 
+/** ISR: CMS-Änderungen erscheinen ohne Redeploy, spätestens nach 60s. */
+export const revalidate = 60;
+
 export async function generateMetadata(): Promise<Metadata> {
   const about = await getContentProvider().getPageContent("about");
   return { title: about.meta.title, description: about.meta.description };
@@ -32,7 +35,7 @@ export default async function AboutPage() {
       {/* Intro */}
       <section className="items-center gap-24 px-6 py-14 md:grid md:grid-cols-[460px_1fr] md:px-30 md:pb-30 md:pt-22">
         <ArchImage
-          imageKey={about.intro.portraitKey}
+          image={about.intro.portraitImage}
           size="portrait"
           className="mx-auto aspect-[3/4] max-w-[300px] md:mx-0 md:aspect-auto md:h-[580px] md:max-w-none"
           priority
@@ -70,7 +73,7 @@ export default async function AboutPage() {
             ))}
           </ScrollReveal>
           <PlaceholderImage
-            imageKey={about.passion.imageKey}
+            image={about.passion.image}
             tone="greige"
             className="mt-10 aspect-[3/4] -rotate-[1.5deg] shadow-tilt md:mt-0 md:aspect-auto md:h-[500px] md:rotate-[1.5deg]"
           />

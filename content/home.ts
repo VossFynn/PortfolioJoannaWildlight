@@ -1,4 +1,4 @@
-import type { HeroImage, HomeContent } from "@/lib/content/types";
+import type { HeroImage, HomeContent } from "@/scripts/seed-data/types";
 
 export const heroImages: HeroImage[] = [
   { imageKey: "home-hero-1", alt: "Schwarz-weißes Familienfoto: Eltern und Kinder halten die neugeborenen Zwillinge" },

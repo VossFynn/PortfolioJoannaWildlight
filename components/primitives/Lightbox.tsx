@@ -4,11 +4,10 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-import { withBasePath } from "@/lib/basePath";
 import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 
 interface LightboxProps {
-  /** Pfad aus dem Bild-Manifest (ohne basePath). */
+  /** Absolute URL des Payload-Media-Objekts. */
   src: string;
   alt: string;
   onClose: () => void;
@@ -46,7 +45,7 @@ export function Lightbox({ src, alt, onClose }: LightboxProps) {
       onClick={onClose}
     >
       <div className="relative h-full w-full max-w-6xl">
-        <Image src={withBasePath(src)} alt={alt} fill className="object-contain" sizes="100vw" />
+        <Image src={src} alt={alt} fill className="object-contain" sizes="100vw" />
       </div>
       <button
         ref={closeRef}

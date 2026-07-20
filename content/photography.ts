@@ -1,4 +1,4 @@
-import type { PhotoCategory, PhotographyContent } from "@/lib/content/types";
+import type { PhotoCategory, PhotographyContent } from "@/scripts/seed-data/types";
 
 export const photography: PhotographyContent = {
   meta: {

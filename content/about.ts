@@ -1,4 +1,4 @@
-import type { AboutContent } from "@/lib/content/types";
+import type { AboutContent } from "@/scripts/seed-data/types";
 
 export const about: AboutContent = {
   meta: {

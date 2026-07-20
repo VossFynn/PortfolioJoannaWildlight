@@ -13,18 +13,26 @@ export interface ContactResult {
 }
 
 /**
- * Austauschbarer Submit-Stub, läuft clientseitig (statischer Export für
- * GitHub Pages — Server Actions stehen dort nicht zur Verfügung).
- * TODO: an Mail-Service anbinden (z. B. Formspree/Resend-API oder
- * CMS-Form-Endpoint per fetch) — Signatur beibehalten, dann muss das
- * Formular nicht angefasst werden.
+ * Sendet die Anfrage an Payloads REST-API (Collection contact-submissions,
+ * öffentlicher `create`-Zugriff — siehe collections/ContactSubmissions.ts).
+ * Einträge landen im Admin-Panel unter "Contact Submissions". Optionaler
+ * E-Mail-Versand: RESEND_API_KEY setzen und @payloadcms/email-resend in
+ * payload.config.ts einbinden (siehe PROJECT_README.md) — ohne Key läuft
+ * alles wie hier, nur ohne Benachrichtigungsmail.
  */
 export async function submitContactRequest(data: ContactRequest): Promise<ContactResult> {
-  // Minimal-Validierung (das Formular validiert bereits ausführlich).
   if (!data.name.trim() || !data.email.trim() || !data.occasion.trim() || !data.message.trim()) {
     return { ok: false, error: "Bitte fülle alle Pflichtfelder aus." };
   }
 
-  console.info("[Kontaktanfrage]", { ...data, receivedAt: new Date().toISOString() });
-  return { ok: true };
+  try {
+    const res = await fetch("/api/contact-submissions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    return { ok: res.ok };
+  } catch {
+    return { ok: false, error: "Netzwerkfehler." };
+  }
 }

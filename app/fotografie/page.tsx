@@ -8,6 +8,9 @@ import { CategoryCarousel } from "@/components/sections/CategoryCarousel";
 import { CTABand } from "@/components/sections/CTABand";
 import { getContentProvider } from "@/lib/content/provider";
 
+/** ISR: CMS-Änderungen erscheinen ohne Redeploy, spätestens nach 60s. */
+export const revalidate = 60;
+
 export async function generateMetadata(): Promise<Metadata> {
   const photography = await getContentProvider().getPageContent("photography");
   return { title: photography.meta.title, description: photography.meta.description };
@@ -36,7 +39,7 @@ export default async function PhotographyPage() {
         const alt = i % 2 === 1;
         const image = (
           <CategoryCarousel
-            imageKeys={cat.imageKeys}
+            images={cat.images}
             tone={alt ? "greige" : "ivory"}
             className={`aspect-[3/4] md:aspect-auto md:h-[620px] md:shadow-tilt ${alt ? "md:rotate-[1deg]" : "md:-rotate-[1deg]"}`}
             priority={i === 0}

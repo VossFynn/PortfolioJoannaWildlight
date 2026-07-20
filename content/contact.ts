@@ -1,4 +1,4 @@
-import type { ContactContent } from "@/lib/content/types";
+import type { ContactContent } from "@/scripts/seed-data/types";
 
 export const contact: ContactContent = {
   meta: {

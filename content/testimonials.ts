@@ -1,4 +1,4 @@
-import type { Testimonial } from "@/lib/content/types";
+import type { Testimonial } from "@/scripts/seed-data/types";
 
 /**
  * Das Design zeigt ein Karussell mit 3 Dots, enthält aber nur ein echtes

@@ -1,4 +1,4 @@
-import type { SiteContent } from "@/lib/content/types";
+import type { SiteContent } from "@/scripts/seed-data/types";
 
 export const site: SiteContent = {
   logo: { top: "JOANNA", bottom: "WILDLIGHT" },
@@ -14,9 +14,9 @@ export const site: SiteContent = {
     tagline: "Fotografin für Bremen und 25km Umkreis",
     quote: "„Fotografie ist für mich das Festhalten von kleinen Wundern.“",
     links: [
-      { label: "Datenschutz", href: "#" },
-      { label: "Cookies", href: "#" },
-      { label: "Impressum", href: "#" },
+      { label: "Datenschutz", href: "/datenschutz" },
+      { label: "Cookies", href: "/datenschutz" },
+      { label: "Impressum", href: "/impressum" },
     ],
     copyright: "© 2026 Joanna Bartels | All rights Reserved",
   },

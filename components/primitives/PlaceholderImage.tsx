@@ -4,11 +4,10 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 
 import { Lightbox } from "@/components/primitives/Lightbox";
-import { withBasePath } from "@/lib/basePath";
-import { getImage } from "@/lib/images/manifest";
+import type { ResolvedImage } from "@/lib/content/types";
 
 interface PlaceholderImageProps {
-  imageKey: string;
+  image: ResolvedImage | null;
   /**
    * Größe/Radius/Rotation kommen vom Aufrufer. Kein `absolute` übergeben —
    * die Fläche ist intern position:relative (next/image fill); zum
@@ -19,6 +18,8 @@ interface PlaceholderImageProps {
   tone?: "ivory" | "greige" | "card";
   /** Kleinere Label-Schrift auf Mobile-Flächen. */
   labelSize?: "sm" | "md";
+  /** Beschriftung des Platzhalters, solange in Payload noch kein Bild hochgeladen ist. */
+  placeholderLabel?: string;
   sizes?: string;
   priority?: boolean;
   /** Klick öffnet das Bild vergrößert in der Lightbox (Default an). */
@@ -26,65 +27,51 @@ interface PlaceholderImageProps {
 }
 
 /**
- * Bildfläche aus dem Manifest. Ohne src: gestreifter Platzhalter mit
- * Monospace-Label und warmem Radial-Glow (Design-Handoff). Mit src:
- * next/image (fill) ohne Glow — Austausch nur über lib/images/manifest.ts.
- * Jedes echte Bild ist per Klick vergrößerbar (expandable={false} schaltet ab).
+ * Bildfläche, gespeist aus Payload-Media (via ContentProvider). Ohne Bild:
+ * gestreifter Platzhalter mit Monospace-Label und warmem Radial-Glow
+ * (Design-Handoff) — zeigt an, dass im CMS noch ein Foto fehlt. Mit Bild:
+ * next/image (fill), responsive über den Next-Image-Optimizer. Jedes echte
+ * Bild ist per Klick vergrößerbar (expandable={false} schaltet ab).
  */
 export function PlaceholderImage({
-  imageKey,
+  image,
   className = "",
   tone = "ivory",
   labelSize = "md",
-  sizes,
+  placeholderLabel = "Bild folgt",
+  sizes = "100vw",
   priority,
   expandable = true,
 }: PlaceholderImageProps) {
-  const asset = getImage(imageKey);
   const [expanded, setExpanded] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
-  if (asset.src) {
+  if (image) {
     return (
       <>
         <div className={`relative overflow-hidden ${className}`}>
-          {asset.srcMobile ? (
-            /* Art-Direction: kleinere Datei für Mobile-Viewports — next/image
-               kann im unoptimized-Export kein <picture>, daher natives img. */
-            <picture>
-              <source media="(max-width: 767px)" srcSet={withBasePath(asset.srcMobile)} />
-              <img
-                src={withBasePath(asset.src)}
-                alt={asset.alt}
-                className="absolute inset-0 h-full w-full object-cover"
-                loading={priority ? "eager" : "lazy"}
-                fetchPriority={priority ? "high" : undefined}
-              />
-            </picture>
-          ) : (
-            <Image
-              src={withBasePath(asset.src)}
-              alt={asset.alt}
-              fill
-              className="object-cover"
-              sizes={sizes}
-              priority={priority}
-            />
-          )}
+          <Image
+            src={image.url}
+            alt={image.alt}
+            fill
+            className="object-cover"
+            sizes={sizes}
+            priority={priority}
+          />
           {expandable && (
             <button
               ref={triggerRef}
               type="button"
               onClick={() => setExpanded(true)}
-              aria-label={`Bild vergrößern: ${asset.alt}`}
+              aria-label={`Bild vergrößern: ${image.alt}`}
               className="absolute inset-0 cursor-zoom-in"
             />
           )}
         </div>
         {expandable && expanded && (
           <Lightbox
-            src={asset.src}
-            alt={asset.alt}
+            src={image.url}
+            alt={image.alt}
             onClose={() => {
               setExpanded(false);
               triggerRef.current?.focus();
@@ -101,12 +88,11 @@ export function PlaceholderImage({
     card: ["var(--jw-stripe-card-a)", "var(--jw-stripe-card-b)"],
   } as const;
   const [stripeA, stripeB] = stripes[tone];
-  const glowX = asset.glowX ?? 50;
 
   return (
     <div
       role="img"
-      aria-label={asset.alt}
+      aria-label={placeholderLabel}
       className={`relative overflow-hidden ${className}`}
       style={{
         background: `repeating-linear-gradient(45deg, ${stripeA}, ${stripeA} 10px, ${stripeB} 10px, ${stripeB} 20px)`,
@@ -116,7 +102,7 @@ export function PlaceholderImage({
         aria-hidden
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 100% 52% at ${glowX}% 0%, var(--jw-placeholder-glow), transparent 62%)`,
+          background: `radial-gradient(ellipse 100% 52% at 50% 0%, var(--jw-placeholder-glow), transparent 62%)`,
         }}
       />
       <div
@@ -124,7 +110,7 @@ export function PlaceholderImage({
           labelSize === "sm" ? "text-[11px]" : "text-xs"
         }`}
       >
-        {asset.label}
+        {placeholderLabel}
       </div>
     </div>
   );

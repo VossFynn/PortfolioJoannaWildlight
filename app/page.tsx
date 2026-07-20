@@ -16,6 +16,9 @@ import { HeroCarousel } from "@/components/sections/HeroCarousel";
 import { TestimonialCarousel } from "@/components/sections/TestimonialCarousel";
 import { getContentProvider } from "@/lib/content/provider";
 
+/** ISR: CMS-Änderungen erscheinen ohne Redeploy, spätestens nach 60s. */
+export const revalidate = 60;
+
 export async function generateMetadata(): Promise<Metadata> {
   const home = await getContentProvider().getPageContent("home");
   return { title: home.meta.title, description: home.meta.description };
@@ -64,14 +67,14 @@ export default async function HomePage() {
             {/* Wrapper positioniert; ArchImage selbst bleibt position:relative (fill-Image) */}
             <div className="absolute inset-y-0 left-0 right-14 md:right-16">
               <ArchImage
-                imageKey={home.intro.portraitKey}
+                image={home.intro.portraitImage}
                 size="portrait"
                 className="h-full w-full"
                 priority
               />
             </div>
             <Polaroid
-              imageKey={home.intro.polaroidKey}
+              image={home.intro.polaroidImage}
               rotate={5}
               className="absolute bottom-9 right-0 h-[165px] w-[130px] md:bottom-14 md:h-[190px] md:w-[150px]"
             />
@@ -115,7 +118,7 @@ export default async function HomePage() {
                 style={{ transform: `rotate(${i % 2 === 0 ? -1.2 : 1.2}deg)` }}
               >
                 <PlaceholderImage
-                  imageKey={card.imageKey}
+                  image={card.image}
                   tone="card"
                   labelSize="sm"
                   className="aspect-[3/4] rounded-t-[var(--jw-radius-arch-sm)] rounded-b-card md:aspect-auto md:h-[360px] md:rounded-t-[var(--jw-radius-arch-card)]"
@@ -147,10 +150,10 @@ export default async function HomePage() {
           </p>
         </ScrollReveal>
         <div className="mt-10 grid grid-cols-2 gap-3.5 md:mt-14 md:grid-cols-4 md:gap-6">
-          {home.works.imageKeys.map((key, i) => (
-            <ScrollReveal key={key} delay={i * 100} className={i % 2 === 0 ? "mt-5 md:mt-8" : ""}>
+          {home.works.images.map((image, i) => (
+            <ScrollReveal key={i} delay={i * 100} className={i % 2 === 0 ? "mt-5 md:mt-8" : ""}>
               <PlaceholderImage
-                imageKey={key}
+                image={image}
                 labelSize="sm"
                 className="aspect-[3/4] md:aspect-auto md:h-[400px]"
               />

@@ -3,9 +3,10 @@
 import { useState } from "react";
 
 import { PlaceholderImage } from "@/components/primitives/PlaceholderImage";
+import type { ResolvedImage } from "@/lib/content/types";
 
 interface CategoryCarouselProps {
-  imageKeys: string[];
+  images: (ResolvedImage | null)[];
   /** Streifen-Variante der Platzhalter passend zum Sektions-BG. */
   tone?: "ivory" | "greige";
   /** Höhe/Rotation/Schatten kommen vom Aufrufer. */
@@ -19,7 +20,7 @@ interface CategoryCarouselProps {
  * Klick aufs Bild vergrößert es (Lightbox via PlaceholderImage).
  */
 export function CategoryCarousel({
-  imageKeys,
+  images,
   tone = "ivory",
   className = "",
   priority,
@@ -28,16 +29,16 @@ export function CategoryCarousel({
 
   return (
     <div className={`relative ${className}`}>
-      {imageKeys.map((key, i) => (
+      {images.map((image, i) => (
         <div
-          key={key}
+          key={i}
           aria-hidden={i !== index}
           className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${
             i === index ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
           <PlaceholderImage
-            imageKey={key}
+            image={image}
             tone={tone}
             className="h-full w-full"
             priority={priority && i === 0}
@@ -45,14 +46,14 @@ export function CategoryCarousel({
         </div>
       ))}
 
-      {imageKeys.length > 1 && (
+      {images.length > 1 && (
         <div className="absolute inset-x-0 bottom-2 flex justify-center gap-1 md:bottom-3">
-          {imageKeys.map((key, i) => (
+          {images.map((_, i) => (
             <button
-              key={key}
+              key={i}
               type="button"
               onClick={() => setIndex(i)}
-              aria-label={`Bild ${i + 1} von ${imageKeys.length} anzeigen`}
+              aria-label={`Bild ${i + 1} von ${images.length} anzeigen`}
               aria-current={i === index}
               className="flex h-7 w-7 items-center justify-center"
             >

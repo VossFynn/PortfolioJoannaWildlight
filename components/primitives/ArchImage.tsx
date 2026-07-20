@@ -1,7 +1,8 @@
 import { PlaceholderImage } from "@/components/primitives/PlaceholderImage";
+import type { ResolvedImage } from "@/lib/content/types";
 
 interface ArchImageProps {
-  imageKey: string;
+  image: ResolvedImage | null;
   /** portrait = großer Bogen (230px Desktop / 150px Mobile), card = Karten-Bogen (150px). */
   size?: "portrait" | "card";
   tone?: "ivory" | "greige";
@@ -11,7 +12,7 @@ interface ArchImageProps {
 
 /** Bild mit Bogen-Radius oben (rund) und 4px-Ecken unten. */
 export function ArchImage({
-  imageKey,
+  image,
   size = "portrait",
   tone = "ivory",
   className = "",
@@ -24,7 +25,7 @@ export function ArchImage({
 
   return (
     <PlaceholderImage
-      imageKey={imageKey}
+      image={image}
       tone={tone}
       priority={priority}
       className={`${radius} rounded-b-card ${className}`}

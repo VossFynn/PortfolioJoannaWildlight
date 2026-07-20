@@ -1,36 +1,61 @@
 # Joanna Wildlight — Portfolio-Website
 
-Pixelgenaue Umsetzung des Design-Handoffs (`design_handoff_joanna_wildlight/`) in
-Next.js (App Router) + TypeScript (strict) + Tailwind CSS v4.
+Next.js (App Router) + TypeScript (strict) + Tailwind CSS v4, mit Payload CMS
+als eingebettetem Backend (Postgres + Cloudflare R2 für Medien). Gehostet auf
+Netlify — siehe [DEPLOYMENT.md](DEPLOYMENT.md) für Live-Setup.
 
-## Starten
+## Starten (lokal)
+
+Braucht eine Postgres-Datenbank. Am einfachsten via Docker:
 
 ```bash
+docker compose up -d        # startet lokales Postgres auf Port 5433
 npm install
-npm run dev        # Entwicklung → http://localhost:3000
-npm run build      # Production-Build (prerendert alle 5 Seiten statisch)
-npm start          # Production-Server
-npx eslint app components lib content   # Lint
-npx tsc --noEmit                        # Typecheck
+npm run dev                 # → http://localhost:3000, Admin unter /admin
+npm run seed                # einmalig: bestehende Copy + Fotos nach Payload übertragen
+```
+
+`.env.local` ist bereits mit `DATABASE_URI` + `PAYLOAD_SECRET` für die lokale
+Postgres-Instanz vorbelegt. R2-Variablen dort optional — ohne sie speichert
+Payload Uploads lokal auf der Festplatte (`media/`) statt in R2.
+
+```bash
+npm run build                            # Production-Build
+npm start                                # Production-Server
+npx eslint app components lib content collections globals scripts   # Lint
+npx tsc --noEmit                         # Typecheck
+npm run generate:types                   # payload-types.ts neu generieren (nach Schema-Änderung)
+npm run migrate:create -- <name>         # neue Migration nach Schema-Änderung
 ```
 
 ## Architektur / Ordnerstruktur
 
 ```
 app/                    Seiten (App Router, RSC)
-  layout.tsx            Root-Layout: Fonts, Header, Footer
-  page.tsx              Startseite
-  ueber-mich/ fotografie/ qa/ kontakt/
-  kontakt/actions.ts    Server Action (Formular-Submit-Stub)
+  layout.tsx            Root-Layout: Fonts, Header, Footer, PageTransition
+  page.tsx               Startseite; ueber-mich/ fotografie/ qa/ kontakt/
+  impressum/ datenschutz/  Rechtstexte (Lexical-RichText aus Payload)
+  (payload)/             Payload-Boilerplate: /admin, /api — siehe unten
+  sitemap.ts / robots.ts / icon.tsx / opengraph-image.tsx
 components/
-  primitives/           Accent, Button, Marquee, SectionDivider, StickerBadge,
+  primitives/            Accent, Button, Marquee, SectionDivider, StickerBadge,
                         SunCircle, Polaroid, ArchImage, PlaceholderImage, ScrollReveal
-  layout/               Header (Client: Drawer/aktive Route), Footer
-  sections/             HeroCarousel, TestimonialCarousel, FaqList, ContactForm, CTABand
-content/                Copy pro Seite (site, home, about, photography, faq,
-                        testimonials, contact) — 1:1 aus den .dc.html-Referenzen
-lib/content/            types.ts (Content-Typen) + provider.ts (CMS-Naht)
-lib/images/manifest.ts  Bild-Manifest: semantischer Key → Asset
+  layout/                Header (Client: Drawer/aktive Route), Footer, PageTransition
+  sections/              HeroCarousel, TestimonialCarousel, FaqList, ContactForm,
+                        CTABand, CategoryCarousel
+collections/            Payload-Collections: Media, Users, Testimonials,
+                        FaqItems, PhotoCategories, ContactSubmissions
+globals/                Payload-Globals: SiteSettings, HomePage, AboutPage,
+                        PhotographyPage, FaqPage, ContactPage, Impressum-/
+                        DatenschutzPage — je ein Global pro Seite
+lib/content/            types.ts (Runtime-Content-Typen) + provider.ts
+                        (PayloadContentProvider — CMS-Naht)
+payload.config.ts        Payload-Konfiguration (DB-Adapter, Storage, Collections/Globals)
+scripts/seed.ts          Einmaliges Seed-Script (siehe unten)
+scripts/seed-data/       Nur für den Seed genutzte Typen + Bild-Manifest
+content/*.ts             Seed-Quelldaten (1:1 die ursprüngliche Copy) — wird
+                        nur von scripts/seed.ts gelesen, nicht mehr vom Frontend
+migrations/               Postgres-Migrationen (werden bei jedem Deploy angewendet)
 ```
 
 ## Design-Tokens
@@ -41,67 +66,69 @@ Tailwind-Theme via `@theme inline` (Tailwind v4, kein `tailwind.config`).
 Komponenten referenzieren nur Token-Klassen (`bg-ivory`, `text-gold-dark`, …)
 oder `var(--jw-*)` — nie harte Hex-Werte.
 
-## Fotos austauschen
+## Inhalte bearbeiten (Payload CMS)
 
-Alle Fotos liegen in `public/images/` und sind über `lib/images/manifest.ts`
-den semantischen Keys zugeordnet (`home-hero-1`, `portrait-joanna`,
-`kat-familie`, …). Foto tauschen:
+Alle Texte und Fotos werden im Admin-Panel unter `/admin` gepflegt — keine
+Code-Änderung mehr nötig:
 
-1. Datei nach `public/images/` legen, z. B. `public/images/hero-1.jpg`.
-2. In `lib/images/manifest.ts` beim passenden Key `src` (und `alt`) setzen:
-   `"home-hero-1": { src: "/images/hero-1.jpg", label: …, alt: … }`.
-3. Fertig — `PlaceholderImage` rendert `next/image` (object-cover);
-   Radius/Rotation bleiben erhalten. `src: null` zeigt wieder den
-   gestreiften Design-Platzhalter.
+- **Seiten-Inhalte** (Texte, Headlines, Bilder): je ein "Global" pro Seite
+  (Startseite, Über mich, Fotografie, Q+A, Kontakt, Impressum, Datenschutz)
+  sowie "Site Settings" für Logo/Navigation/Footer/Instagram.
+- **Fotos**: über die Media-Bibliothek hochladen, dann in den jeweiligen
+  Bild-Feldern auswählen. Ohne ausgewähltes Bild zeigt das Frontend einen
+  gestreiften Platzhalter (Design-Fallback, kein Fehler).
+- **Testimonials / FAQ / Fotografie-Kategorien**: eigene Collections mit
+  einem `order`-Feld für die Reihenfolge.
+- Änderungen erscheinen **innerhalb von ~60s** live (ISR-Revalidierung,
+  `export const revalidate = 60` in jeder `page.tsx`) — kein Redeploy nötig.
 
-Das Hero-Carousel hat aktuell 2 Slides (`content/home.ts`) — weitere
-Querformat-Fotos einfach als neuen Key + Eintrag in `heroImages` ergänzen.
-Das Logo liegt als `public/images/logo.png` und wird im Header gerendert.
+## Copy-Konvention
 
-**Testimonials:** `content/testimonials.ts` enthält 1 echtes Zitat und 2 mit
-`isPlaceholder: true` markierte Einträge — vor Launch durch echte
-Google-Rezensionen ersetzen.
-
-## Copy bearbeiten
-
-Sämtliche Texte liegen in `content/*.ts` (typisiert über
-`lib/content/types.ts`). Konvention **AccentedText**: genau ein mit
-`*Sternchen*` markierter Teil wird als italic-Gold-Akzent gerendert
-(`<Accent>`), `\n` erzwingt einen Umbruch (Mobile-Headlines).
+**AccentedText**: genau ein mit `*Sternchen*` markierter Teil wird als
+italic-Gold-Akzent gerendert (`<Accent>`), `\n` erzwingt einen Umbruch
+(Mobile-Headlines). Gilt für alle entsprechend gekennzeichneten Textfelder
+im Admin-Panel (Beschreibung steht dort als Feld-Hinweis).
 
 ## CMS-Naht
 
-Komponenten beziehen Inhalte nur über das `ContentProvider`-Interface
-(`lib/content/provider.ts`):
+Komponenten/Seiten beziehen Inhalte ausschließlich über das
+`ContentProvider`-Interface (`lib/content/provider.ts`):
 
 ```ts
 getSiteContent() · getHeroImages() · getTestimonials() · getFaqItems()
-getPhotoCategories() · getPageContent(page)
+getPhotoCategories() · getPageContent(page) · getLegalPage(slug)
 ```
 
-Ein CMS-Adapter muss genau dieses Interface implementieren (alle Getter async,
-Rückgabetypen aus `lib/content/types.ts`) und in `getContentProvider()`
-eingetauscht werden — Komponenten und Seiten bleiben unverändert.
+`PayloadContentProvider` implementiert dieses Interface über Payloads Local
+API (kein HTTP-Roundtrip, läuft direkt in React Server Components). Ein
+Wechsel des Backends würde nur eine neue Implementierung + Eintausch in
+`getContentProvider()` erfordern — Komponenten/Seiten blieben unangetastet.
+
+## Bilder
+
+`components/primitives/PlaceholderImage.tsx` rendert Payload-Media (next/image,
+responsive über den Next-Image-Optimizer) oder — falls kein Bild gesetzt —
+einen gestreiften Design-Platzhalter mit Label. Lightbox-Zoom ist für alle
+Content-Bilder aktiv (`expandable={false}` schaltet es ab).
 
 ## Kontaktformular
 
-`components/sections/ContactForm.tsx` validiert clientseitig (Pflichtfelder,
-E-Mail-Format, Datenschutz-Checkbox) und submittet gegen
-`lib/contact/submit.ts` (clientseitiger Stub — Server Actions stehen im
-statischen Export nicht zur Verfügung). Dort steht der **TODO für den
-Mail-Service** (z. B. Formspree/Resend-API per fetch) — Signatur
-`submitContactRequest(data)` beibehalten, dann bleibt das Formular
-unangetastet.
+`components/sections/ContactForm.tsx` validiert clientseitig und sendet an
+`lib/contact/submit.ts` → POST gegen Payloads REST-API
+(`/api/contact-submissions`, öffentlicher `create`-Zugriff, `read` nur für
+eingeloggte Admins). Einträge landen unter `/admin` → „Contact Submissions“.
+Optionaler E-Mail-Versand: siehe DEPLOYMENT.md.
 
-## Deployment (GitHub Pages)
+## Seed-Script
 
-Die Site wird als statischer Export (`output: "export"` in `next.config.ts`)
-gebaut und per GitHub Actions (`.github/workflows/deploy.yml`) auf GitHub
-Pages deployt: <https://vossfynn.github.io/PortfolioJoannaWildlight/>
+`scripts/seed.ts` überträgt einmalig die ursprüngliche lokale Copy
+(`content/*.ts`) und alle Fotos (`public/images/`) nach Payload — via
+`npm run seed`. Läuft nur, wenn die Media-Collection leer ist (Schutz gegen
+versehentliches Doppel-Seeding); `FORCE_SEED=true npm run seed` erzwingt es.
+Nach dem ersten erfolgreichen Seed sind `content/*.ts` nur noch Referenz/
+Backup der ursprünglichen Copy, nicht mehr Teil des Laufzeit-Pfads.
 
-- **Einmalig aktivieren:** Repo → Settings → Pages → Source: **GitHub Actions**.
-- Jeder Push auf `main` deployt automatisch (oder manuell via *Run workflow*).
-- Der Workflow setzt `NEXT_PUBLIC_BASE_PATH=/PortfolioJoannaWildlight`;
-  Asset-Pfade aus `public/` laufen deshalb über `withBasePath()`
-  (`lib/basePath.ts`). Lokal (`npm run dev`/`build`) bleibt der Pfad leer.
-- `images.unoptimized: true`, da GitHub Pages keinen Next-Image-Optimizer hat.
+## Deployment
+
+Siehe [DEPLOYMENT.md](DEPLOYMENT.md) — Netlify (Next.js-Runtime), Netlify DB
+(Neon-Postgres, ohne separaten Account), Cloudflare R2 für Medien.

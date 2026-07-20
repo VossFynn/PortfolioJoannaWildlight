@@ -1,12 +1,23 @@
+import type { ImpressumPage } from "@/payload-types";
+
 /**
- * Content-Typen der Website. Alle Texte kommen aus content/ (heute lokal,
- * später CMS via ContentProvider-Adapter).
+ * Content-Typen der Website. Alle Texte/Bilder kommen aus Payload CMS via
+ * PayloadContentProvider (lib/content/provider.ts).
  *
  * Konvention "AccentedText": ein String, in dem GENAU EIN Wort/Teilsatz mit
  * *Sternchen* markiert ist — es wird als italic-Gold-Akzent gerendert
  * (Komponente <Accent>). Beispiel: "Schön, dass du *da* bist!"
  */
 export type AccentedText = string;
+
+/**
+ * Aufgelöste Bild-Referenz (Payload-Media → URL/Alt). `null` = noch kein
+ * Bild hochgeladen, Frontend zeigt den gestreiften Design-Platzhalter.
+ */
+export interface ResolvedImage {
+  url: string;
+  alt: string;
+}
 
 export interface NavItem {
   label: string;
@@ -20,15 +31,12 @@ export interface PageMeta {
 
 /** Hero-Slide des Startseiten-Carousels. */
 export interface HeroImage {
-  imageKey: string;
-  alt: string;
+  image: ResolvedImage | null;
 }
 
 export interface Testimonial {
   quote: string;
   author: string;
-  /** true = noch kein echtes Kundenzitat — vor Launch ersetzen. */
-  isPlaceholder?: boolean;
 }
 
 export interface FaqItem {
@@ -42,22 +50,22 @@ export interface PhotoCategory {
   eyebrow: string;
   headline: string;
   text: string;
-  /** Slides des Kategorie-Karussells; bei nur einem Key gibt es keine Dots. */
-  imageKeys: string[];
+  /** Slides des Kategorie-Karussells; bei nur einem Bild gibt es keine Dots. */
+  images: (ResolvedImage | null)[];
 }
 
 export type ContactSource = string;
 
 export interface CtaBandContent {
   headline: AccentedText;
-  text?: string;
+  text?: string | null;
   buttonLabel: string;
   buttonHref: string;
-  quote?: string;
+  quote?: string | null;
 }
 
 export interface SiteContent {
-  logo: { top: string; bottom: string };
+  logo: { top: string; bottom: string; image: ResolvedImage | null };
   nav: NavItem[];
   footer: {
     name: string;
@@ -72,7 +80,7 @@ export interface SiteContent {
 export interface ServiceCard {
   title: string;
   text: string;
-  imageKey: string;
+  image: ResolvedImage | null;
 }
 
 export interface HomeContent {
@@ -85,8 +93,8 @@ export interface HomeContent {
     paragraphs: string[];
     buttonLabel: string;
     buttonHref: string;
-    portraitKey: string;
-    polaroidKey: string;
+    portraitImage: ResolvedImage | null;
+    polaroidImage: ResolvedImage | null;
     stickerLabel: string;
   };
   marqueeItems: string[];
@@ -100,7 +108,7 @@ export interface HomeContent {
   works: {
     headline: AccentedText;
     text: string;
-    imageKeys: string[];
+    images: (ResolvedImage | null)[];
     buttonLabel: string;
     buttonHref: string;
   };
@@ -118,8 +126,8 @@ export interface AboutContent {
   meta: PageMeta;
   headline: AccentedText;
   marqueeItems: string[];
-  intro: { portraitKey: string; headline: string; paragraphs: string[] };
-  passion: { headline: string; paragraphs: string[]; imageKey: string };
+  intro: { portraitImage: ResolvedImage | null; headline: string; paragraphs: string[] };
+  passion: { headline: string; paragraphs: string[]; image: ResolvedImage | null };
   facts: { headline: AccentedText; items: string[] };
   cta: CtaBandContent;
 }
@@ -154,11 +162,18 @@ export interface ContactContent {
     submitLabel: string;
   };
   side: {
-    portraitKey: string;
+    portraitImage: ResolvedImage | null;
     stickerLabel: string;
     headline: string;
     instagramTextBefore: string;
   };
+}
+
+/** Impressum/Datenschutz — Rechtstext als Lexical-RichText-JSON. */
+export interface LegalPageContent {
+  meta: PageMeta;
+  headline: string;
+  body: ImpressumPage["body"];
 }
 
 export type PageContentMap = {

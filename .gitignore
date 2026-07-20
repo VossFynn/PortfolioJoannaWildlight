@@ -39,6 +39,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# payload local-disk upload fallback (only used when R2 env vars are unset,
+# e.g. local dev) — production media lives in Cloudflare R2, not in git
+/media
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

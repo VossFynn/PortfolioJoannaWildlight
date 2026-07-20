@@ -185,3 +185,25 @@ html {
     transition: none;
   }
 }
+
+/* PageTransition: sanfter Crossfade beim Routenwechsel (Dauer muss zu
+   TRANSITION_MS in components/layout/PageTransition.tsx passen). */
+.jw-page-transition {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 180ms ease-in-out,
+    transform 180ms ease-in-out;
+}
+.jw-page-transition-out {
+  opacity: 0;
+  transform: translateY(6px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .jw-page-transition,
+  .jw-page-transition-out {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

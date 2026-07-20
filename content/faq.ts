@@ -1,4 +1,4 @@
-import type { FaqItem, FaqPageContent } from "@/lib/content/types";
+import type { FaqItem, FaqPageContent } from "@/scripts/seed-data/types";
 
 export const faqPage: FaqPageContent = {
   meta: {

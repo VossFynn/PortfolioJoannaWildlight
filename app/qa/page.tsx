@@ -7,6 +7,9 @@ import { CTABand } from "@/components/sections/CTABand";
 import { FaqList } from "@/components/sections/FaqList";
 import { getContentProvider } from "@/lib/content/provider";
 
+/** ISR: CMS-Änderungen erscheinen ohne Redeploy, spätestens nach 60s. */
+export const revalidate = 60;
+
 export async function generateMetadata(): Promise<Metadata> {
   const faq = await getContentProvider().getPageContent("faq");
   return { title: faq.meta.title, description: faq.meta.description };

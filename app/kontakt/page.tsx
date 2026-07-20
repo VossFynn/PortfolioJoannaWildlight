@@ -8,6 +8,9 @@ import { StickerBadge } from "@/components/primitives/StickerBadge";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { getContentProvider } from "@/lib/content/provider";
 
+/** ISR: CMS-Änderungen erscheinen ohne Redeploy, spätestens nach 60s. */
+export const revalidate = 60;
+
 export async function generateMetadata(): Promise<Metadata> {
   const contact = await getContentProvider().getPageContent("contact");
   return { title: contact.meta.title, description: contact.meta.description };
@@ -38,7 +41,7 @@ export default async function ContactPage() {
       <div className="mt-16 flex flex-col gap-9 md:mt-0">
         <div className="relative">
           <ArchImage
-            imageKey={contact.side.portraitKey}
+            image={contact.side.portraitImage}
             size="portrait"
             className="mx-auto aspect-[3/4] max-w-[300px] md:mx-0 md:aspect-auto md:h-[520px] md:max-w-none"
           />

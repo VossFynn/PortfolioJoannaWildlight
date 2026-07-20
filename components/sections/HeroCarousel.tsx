@@ -40,14 +40,14 @@ export function HeroCarousel({ slides, title, subtitle }: HeroCarouselProps) {
       {/* Slides (crossfade) */}
       {slides.map((slide, i) => (
         <div
-          key={slide.imageKey}
+          key={i}
           className={`absolute inset-0 transition-opacity duration-1000 ${
             i === index ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
           aria-hidden={i !== index}
         >
           <PlaceholderImage
-            imageKey={slide.imageKey}
+            image={slide.image}
             className="h-full w-full"
             sizes="100vw"
             priority={i === 0}
@@ -78,9 +78,9 @@ export function HeroCarousel({ slides, title, subtitle }: HeroCarouselProps) {
       {/* Dezente Dots — Klick springt direkt zum Slide */}
       {slides.length > 1 && (
         <div className="absolute inset-x-0 bottom-1.5 flex justify-center gap-1 md:bottom-4">
-          {slides.map((slide, i) => (
+          {slides.map((_, i) => (
             <button
-              key={slide.imageKey}
+              key={i}
               type="button"
               onClick={() => setIndex(i)}
               aria-label={`Bild ${i + 1} von ${slides.length} anzeigen`}
@@ -99,7 +99,7 @@ export function HeroCarousel({ slides, title, subtitle }: HeroCarouselProps) {
 
       {/* Screenreader-Status */}
       <p className="sr-only" aria-live="polite">
-        {slides[index]?.alt}
+        {slides[index]?.image?.alt}
       </p>
     </section>
   );

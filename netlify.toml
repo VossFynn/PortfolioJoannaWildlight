@@ -1,0 +1,8 @@
+[build]
+  # `payload migrate` wendet ausstehende Postgres-Migrationen an, bevor
+  # gebaut wird — Payload pusht das Schema in Produktion bewusst nicht mehr
+  # automatisch (nur im lokalen Dev-Modus). Siehe migrations/.
+  command = "npm run migrate && next build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

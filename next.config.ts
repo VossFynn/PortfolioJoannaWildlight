@@ -1,19 +1,23 @@
+import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
-// Für GitHub Pages: Deployment liegt unter /<repo-name>/ — der Workflow
-// setzt NEXT_PUBLIC_BASE_PATH="/PortfolioJoannaWildlight". Lokal bleibt
-// die Variable leer (kein Präfix). Asset-src aus public/ läuft über
-// lib/basePath.ts (next/image prefixt bei unoptimized nicht automatisch).
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+// Medien liegen auf Cloudflare R2 (S3-Storage-Plugin, payload.config.ts).
+// R2_PUBLIC_URL ist die öffentliche Bucket-Domain, z. B.
+// "https://media.joanna-wildlight.de" oder die *.r2.dev-Dev-URL.
+const r2PublicUrl = process.env.R2_PUBLIC_URL ? new URL(process.env.R2_PUBLIC_URL) : null;
 
 const nextConfig: NextConfig = {
-  output: "export",
-  basePath,
-  assetPrefix: basePath,
   images: {
-    // GitHub Pages hat keinen Image-Optimizer (statisches Hosting).
-    unoptimized: true,
+    remotePatterns: r2PublicUrl
+      ? [
+          {
+            protocol: r2PublicUrl.protocol.replace(":", "") as "http" | "https",
+            hostname: r2PublicUrl.hostname,
+            pathname: "/**",
+          },
+        ]
+      : [],
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);
