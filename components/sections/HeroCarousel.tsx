@@ -32,7 +32,7 @@ export function HeroCarousel({ slides, title, subtitle }: HeroCarouselProps) {
 
   return (
     <section
-      className="relative aspect-square max-h-[560px] overflow-hidden md:aspect-auto md:h-[680px] md:max-h-none"
+      className="relative aspect-square max-h-[560px] overflow-hidden md:aspect-[2/1] md:max-h-none"
       role="region"
       aria-roledescription="Karussell"
       aria-label="Eindrücke aus Shootings"

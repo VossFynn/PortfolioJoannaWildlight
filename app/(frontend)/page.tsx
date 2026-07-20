@@ -115,14 +115,14 @@ export default async function HomePage() {
           {home.services.cards.map((card, i) => (
             <ScrollReveal key={card.title} delay={i * 120}>
               <div
-                className="rounded-card bg-card p-3 pb-6.5 shadow-card md:p-3.5 md:pb-8"
+                className="rounded-card bg-card p-3 pb-6.5 shadow-card md:mx-auto md:max-w-[360px] md:p-3.5 md:pb-8"
                 style={{ transform: `rotate(${i % 2 === 0 ? -1.2 : 1.2}deg)` }}
               >
                 <PlaceholderImage
                   image={card.image}
                   tone="card"
                   labelSize="sm"
-                  className="aspect-[3/4] rounded-t-[var(--jw-radius-arch-sm)] rounded-b-card md:aspect-auto md:h-[360px] md:rounded-t-[var(--jw-radius-arch-card)]"
+                  className="aspect-[3/4] rounded-t-[var(--jw-radius-arch-sm)] rounded-b-card md:rounded-t-[var(--jw-radius-arch-card)]"
                   sizes="(min-width: 768px) 30vw, 100vw"
                 />
                 <div className="px-5.5 pt-5.5 md:px-7 md:pt-7">
@@ -157,7 +157,7 @@ export default async function HomePage() {
               <PlaceholderImage
                 image={image}
                 labelSize="sm"
-                className="aspect-[3/4] md:aspect-auto md:h-[400px]"
+                className="aspect-[3/4] md:mx-auto md:max-w-[300px]"
                 sizes="(min-width: 768px) 25vw, 50vw"
               />
             </ScrollReveal>
