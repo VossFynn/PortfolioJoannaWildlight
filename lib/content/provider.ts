@@ -37,7 +37,7 @@ export interface ContentProvider {
 /** Löst eine Payload-Relationship (ID, populiertes Doc oder leer) zu {url, alt} auf. */
 function resolveImage(media: number | Media | null | undefined): ResolvedImage | null {
   if (!media || typeof media === "number" || !media.url) return null;
-  return { url: media.url, alt: media.alt };
+  return { url: media.url, alt: media.alt, blurDataURL: media.blurDataURL ?? null };
 }
 
 function resolveImages(media: (number | Media)[] | null | undefined): (ResolvedImage | null)[] {

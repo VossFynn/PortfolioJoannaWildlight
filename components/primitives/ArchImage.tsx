@@ -8,6 +8,7 @@ interface ArchImageProps {
   tone?: "ivory" | "greige";
   className?: string;
   priority?: boolean;
+  sizes?: string;
 }
 
 /** Bild mit Bogen-Radius oben (rund) und 4px-Ecken unten. */
@@ -17,6 +18,7 @@ export function ArchImage({
   tone = "ivory",
   className = "",
   priority,
+  sizes,
 }: ArchImageProps) {
   const radius =
     size === "portrait"
@@ -28,6 +30,7 @@ export function ArchImage({
       image={image}
       tone={tone}
       priority={priority}
+      sizes={sizes}
       className={`${radius} rounded-b-card ${className}`}
     />
   );

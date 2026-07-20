@@ -71,6 +71,7 @@ export default async function HomePage() {
                 size="portrait"
                 className="h-full w-full"
                 priority
+                sizes="(min-width: 768px) 400px, 90vw"
               />
             </div>
             <Polaroid
@@ -122,6 +123,7 @@ export default async function HomePage() {
                   tone="card"
                   labelSize="sm"
                   className="aspect-[3/4] rounded-t-[var(--jw-radius-arch-sm)] rounded-b-card md:aspect-auto md:h-[360px] md:rounded-t-[var(--jw-radius-arch-card)]"
+                  sizes="(min-width: 768px) 30vw, 100vw"
                 />
                 <div className="px-5.5 pt-5.5 md:px-7 md:pt-7">
                   <div className="font-display text-[25px] md:text-[28px]">{card.title}</div>
@@ -156,6 +158,7 @@ export default async function HomePage() {
                 image={image}
                 labelSize="sm"
                 className="aspect-[3/4] md:aspect-auto md:h-[400px]"
+                sizes="(min-width: 768px) 25vw, 50vw"
               />
             </ScrollReveal>
           ))}

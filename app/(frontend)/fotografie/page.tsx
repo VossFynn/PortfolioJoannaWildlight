@@ -43,6 +43,7 @@ export default async function PhotographyPage() {
             tone={alt ? "greige" : "ivory"}
             className={`aspect-[3/4] md:aspect-auto md:h-[620px] md:shadow-tilt ${alt ? "md:rotate-[1deg]" : "md:-rotate-[1deg]"}`}
             priority={i === 0}
+            sizes="(min-width: 768px) 520px, 100vw"
           />
         );
         const text = (

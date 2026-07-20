@@ -12,6 +12,7 @@ interface CategoryCarouselProps {
   /** Höhe/Rotation/Schatten kommen vom Aufrufer. */
   className?: string;
   priority?: boolean;
+  sizes?: string;
 }
 
 /**
@@ -24,6 +25,7 @@ export function CategoryCarousel({
   tone = "ivory",
   className = "",
   priority,
+  sizes,
 }: CategoryCarouselProps) {
   const [index, setIndex] = useState(0);
 
@@ -42,6 +44,7 @@ export function CategoryCarousel({
             tone={tone}
             className="h-full w-full"
             priority={priority && i === 0}
+            sizes={sizes}
           />
         </div>
       ))}

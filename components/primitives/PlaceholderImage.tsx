@@ -57,6 +57,8 @@ export function PlaceholderImage({
             className="object-cover"
             sizes={sizes}
             priority={priority}
+            placeholder={image.blurDataURL ? "blur" : undefined}
+            blurDataURL={image.blurDataURL ?? undefined}
           />
           {expandable && (
             <button

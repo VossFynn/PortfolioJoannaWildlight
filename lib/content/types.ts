@@ -17,6 +17,8 @@ export type AccentedText = string;
 export interface ResolvedImage {
   url: string;
   alt: string;
+  /** Winziges Vorschaubild als Data-URI (next/image `placeholder="blur"`), `null` bei älteren Uploads ohne Blur-Generierung. */
+  blurDataURL: string | null;
 }
 
 export interface NavItem {

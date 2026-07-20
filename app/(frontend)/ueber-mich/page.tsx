@@ -39,6 +39,7 @@ export default async function AboutPage() {
           size="portrait"
           className="mx-auto aspect-[3/4] max-w-[300px] md:mx-0 md:aspect-auto md:h-[580px] md:max-w-none"
           priority
+          sizes="(min-width: 768px) 460px, 300px"
         />
         <div>
           <h2 className="mt-10 font-display text-[29px] font-medium md:mt-0 md:text-[40px]">
@@ -76,6 +77,7 @@ export default async function AboutPage() {
             image={about.passion.image}
             tone="greige"
             className="mt-10 aspect-[3/4] -rotate-[1.5deg] shadow-tilt md:mt-0 md:aspect-auto md:h-[500px] md:rotate-[1.5deg]"
+            sizes="(min-width: 768px) 400px, 100vw"
           />
         </div>
       </section>
