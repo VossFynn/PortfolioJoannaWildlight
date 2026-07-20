@@ -207,3 +207,25 @@ html {
     transition: none;
   }
 }
+
+/* Mobile-Drawer (Header.tsx): Fade + leichtes Absinken aus der Kopfzeile
+   beim Öffnen/Schließen (Dauer muss zu DRAWER_TRANSITION_MS passen). */
+.jw-drawer {
+  opacity: 0;
+  transform: translateY(-16px);
+  transition:
+    opacity 220ms ease-in-out,
+    transform 220ms ease-in-out;
+}
+.jw-drawer-open {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .jw-drawer,
+  .jw-drawer-open {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

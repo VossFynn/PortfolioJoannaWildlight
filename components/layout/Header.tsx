@@ -18,10 +18,23 @@ function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
 
+/** Muss zur Transition-Dauer der `.jw-drawer`-Klasse in globals.css passen. */
+const DRAWER_TRANSITION_MS = 220;
+
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function Header({ logo, nav }: HeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [drawerPathname, setDrawerPathname] = useState(pathname);
+  // `mounted` hält den Drawer im DOM, bis die Exit-Transition fertig ist;
+  // `entered` schaltet die geöffnete Optik erst einen Frame nach dem Mounten
+  // um, sonst hat der Browser keine Chance, den geschlossenen Ausgangszustand
+  // zu malen, und die CSS-Transition würde nicht abspielen.
+  const [mounted, setMounted] = useState(false);
+  const [entered, setEntered] = useState(false);
   const burgerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -33,21 +46,60 @@ export function Header({ logo, nav }: HeaderProps) {
     setOpen(false);
   }
 
-  // Solange der Drawer offen ist, Seiten-Scroll sperren (iOS-sicher); Escape schließt.
+  // Drawer-Mount/Optik synchron zu `open` nachziehen (gleiches Render-Zeit-
+  // Pattern wie oben) — nur das Abwarten eines Frames vorm Auf- bzw. eines
+  // Timers vorm Zublenden ist eine echte externe Synchronisation und bleibt
+  // im Effekt darunter. Bei reduced-motion passiert alles hier sofort, ganz
+  // ohne Verzögerung.
+  if (open && !mounted) {
+    setMounted(true);
+  }
+  if (!open && mounted && prefersReducedMotion()) {
+    setMounted(false);
+  }
+  if (open && mounted && !entered && prefersReducedMotion()) {
+    setEntered(true);
+  }
+  if (!open && entered) {
+    setEntered(false);
+  }
+
+  // Nicht-reduced-motion-Fall: eine Frame nach dem Mounten auf die geöffnete
+  // Optik umschalten (sonst hat der Browser den Ausgangszustand nicht
+  // gemalt und die CSS-Transition spielt nicht ab); beim Schließen erst
+  // nach Ablauf der Exit-Transition unmounten.
   useEffect(() => {
+    if (!mounted || prefersReducedMotion()) return;
+
     if (open) {
-      lockScroll();
-      closeRef.current?.focus();
+      const raf = requestAnimationFrame(() => setEntered(true));
+      return () => cancelAnimationFrame(raf);
     }
+
+    const timeout = setTimeout(() => setMounted(false), DRAWER_TRANSITION_MS);
+    return () => clearTimeout(timeout);
+  }, [mounted, open]);
+
+  // Solange der Drawer (inkl. Exit-Transition) im DOM steht, Seiten-Scroll
+  // sperren (iOS-sicher); Escape schließt.
+  useEffect(() => {
+    if (!mounted) return;
+    lockScroll();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => {
-      if (open) unlockScroll();
+      unlockScroll();
       window.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [mounted]);
+
+  // Fokus auf den Schließen-Button erst, sobald der Drawer tatsächlich im
+  // DOM ist (Ref existiert erst nach dem Mount-Render).
+  useEffect(() => {
+    if (mounted) closeRef.current?.focus();
+  }, [mounted]);
 
   const closeAndRestoreFocus = () => {
     setOpen(false);
@@ -121,15 +173,19 @@ export function Header({ logo, nav }: HeaderProps) {
           schnellem/Momentum-Scrollen manchmal einen Frame hinterher — ein Klick auf
           den Burger währenddessen ließ den Hintergrund durch die Lücke unter dem
           (noch nicht angedockten) Header aufblitzen. Die Drawer-eigene Kopfzeile
-          (Logo + Schließen-Button) macht sie unabhängig vom echten Header. */}
-      {open &&
+          (Logo + Schließen-Button) macht sie unabhängig vom echten Header.
+          Fade + leichtes Absinken aus der Kopfzeile (.jw-drawer in globals.css,
+          Dauer muss zu DRAWER_TRANSITION_MS passen). */}
+      {mounted &&
         createPortal(
           <div
             id="mobile-menu"
             role="dialog"
             aria-modal="true"
             aria-label="Hauptnavigation mobil"
-            className="fixed inset-0 z-[60] flex flex-col bg-ivory md:hidden"
+            className={`jw-drawer fixed inset-0 z-[60] flex flex-col bg-ivory md:hidden ${
+              entered ? "jw-drawer-open" : ""
+            }`}
           >
             <div className="flex h-16 items-center justify-between border-b border-line pl-5 pr-2">
               <Link href="/" aria-label={`${logo.top} ${logo.bottom} — Startseite`} onClick={closeAndRestoreFocus}>
