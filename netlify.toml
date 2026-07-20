@@ -4,5 +4,12 @@
   # automatisch (nur im lokalen Dev-Modus). Siehe migrations/.
   command = "npm run migrate && next build"
 
+[functions]
+  # Next.js file tracing (Turbopack) verpasst sharps native Linux-Binary,
+  # weil Payload sharp direkt nutzt (nicht nur über next/image) — ohne das
+  # hier explizit mitzuschicken wirft die Function zur Laufzeit
+  # ERR_DLOPEN_FAILED für libvips-cpp.so.
+  included_files = ["node_modules/sharp/**", "node_modules/@img/**"]
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
